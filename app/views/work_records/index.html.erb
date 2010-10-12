@@ -1,0 +1,68 @@
+<h1>Listing work_records</h1>
+
+<%= link_to 'Utwórz nowy raport lub kontynuuj poprzedni', report_cofiguration_path %>
+
+<h1>Wyświetl raport dla okresu</h1>
+<%= form_tag '/work_records', :method => 'get' do -%>
+  Od: <%= text_field :report, :start_date, :class => 'calendar', :value => params[:report][:start_date] %><br/>
+  Do: <%= text_field :report, :end_date, :class => 'calendar', :value => params[:report][:end_date] %>
+  <%= button_to 'Wyświetl' %>
+  <script>
+  months = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
+	$(function() {
+		$(".calendar").datepicker({ dateFormat: 'dd-mm-yy', monthNames: months });
+	});
+	</script>
+<% end -%>
+
+<table>
+  <tr>
+    <th>Employee</th>
+    <th>Gr3</th>
+    <th>Gr4</th>
+    <th>Gr5</th>
+    <th>Gr6</th>
+    <th>Gr7</th>
+    <th>Gr8</th>
+    <th>Gr9</th>
+    <th>RAZEM AKORD</th>
+    <th>WYDAJNOŚĆ</th>
+    <th>Other work</th>
+    <th>Cleaning</th>
+    <th>Correction</th>
+    <th>Przerwy</th>
+    <th>Łączny czas przebywania w pracy</th>
+    <th>Data</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @work_records.each do |work_record| %>
+  <tr>
+    <td><%= "#{work_record.employee_id}"%><%#" | #{work_record.employee.last_name} #{work_record.employee.first_name}" %></td>
+    <td><%= work_record.gr3_sum %></td>
+    <td><%= work_record.gr4 %></td>
+    <td><%= work_record.gr5 %></td>
+    <td><%= work_record.gr6 %></td>
+    <td><%= work_record.gr7 %></td>
+    <td><%= work_record.gr8 %></td>
+    <td><%= work_record.gr9 %></td>
+    <td><%= work_record.accord_sum %></td>
+    <td><%= work_record.productivity %></td>
+    <td><%= work_record.other_work %></td>
+    <td><%= work_record.cleaning %></td>
+    <td><%= work_record.correction %></td>
+    <td><%= work_record.breaks %></td>
+    <td><%= work_record.all_work_time %></td>
+    <td><%= work_record.date %></td>
+    <td><%= link_to 'Show', work_record %></td>
+    <td><%= link_to 'Edit', edit_work_record_path(work_record) %></td>
+    <td><%= link_to 'Destroy', work_record, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Work record', new_work_record_path %>

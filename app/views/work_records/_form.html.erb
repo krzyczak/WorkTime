@@ -1,0 +1,72 @@
+<%= form_for(@work_record) do |f| %>
+  <% if @work_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@work_record.errors.count, "error") %> prohibited this work_record from being saved:</h2>
+
+      <ul>
+      <% @work_record.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :date %><br />
+    <%#= f.date_select :date %>
+    <%= @work_record.date %>
+    <%= f.hidden_field :date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :employee_id %>: <%= @work_record.employee.id %> <%= "#{@work_record.employee.first_name} #{@work_record.employee.last_name} | #{@work_record.employee.department.name}" %>
+    <%= f.hidden_field :employee_id %>
+  </div>
+  <div class="field">
+    <%= f.label :gr3 %><br />
+    <%= f.text_field :gr3 %>
+  </div>
+  <div class="field">
+    <%= f.label :gr4 %><br />
+    <%= f.text_field :gr4 %>
+  </div>
+  <div class="field">
+    <%= f.label :gr5 %><br />
+    <%= f.text_field :gr5 %>
+  </div>
+  <div class="field">
+    <%= f.label :gr6 %><br />
+    <%= f.text_field :gr6 %>
+  </div>
+  <div class="field">
+    <%= f.label :gr7 %><br />
+    <%= f.text_field :gr7 %>
+  </div>
+  <div class="field">
+    <%= f.label :gr8 %><br />
+    <%= f.text_field :gr8 %>
+  </div>
+  <div class="field">
+    <%= f.label :gr9 %><br />
+    <%= f.text_field :gr9 %>
+  </div>
+  <div class="field">
+    <%= f.label :other_work %><br />
+    <%= f.text_field :other_work %>
+  </div>
+  <div class="field">
+    <%= f.label :cleaning %><br />
+    <%= f.text_field :cleaning %>
+  </div>
+  <div class="field">
+    <%= f.label :correction %><br />
+    <%= f.text_field :correction %>
+  </div>
+  <div class="field">
+    <%= f.label :all_work_time %><br />
+    <%= f.text_field :all_work_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
