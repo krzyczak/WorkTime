@@ -1,0 +1,11 @@
+<%= form_tag new_report_path do %>
+  
+  <h3>Data raportu</h3>
+  <%= date_select :report_configuration, :date %>
+  
+  <h3>Odział</h3>
+  <%= select_tag :department, options_for_select(@departments.collect {|d| [ d.name, d.id ] }) %>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>

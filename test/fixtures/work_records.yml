@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  employee_id: 1
+  gr3: 9.99
+  gr4: 9.99
+  gr5: 9.99
+  gr6: 9.99
+  gr7: 9.99
+  gr8: 9.99
+  gr9: 9.99
+  other_work: 9.99
+  cleaning: 9.99
+  correction: 9.99
+
+two:
+  employee_id: 1
+  gr3: 9.99
+  gr4: 9.99
+  gr5: 9.99
+  gr6: 9.99
+  gr7: 9.99
+  gr8: 9.99
+  gr9: 9.99
+  other_work: 9.99
+  cleaning: 9.99
+  correction: 9.99

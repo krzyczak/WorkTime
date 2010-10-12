@@ -1,0 +1,2 @@
+module WorkRecordsHelper
+end

@@ -1,0 +1,31 @@
+<h1>Listing employees</h1>
+
+<%= link_to 'Dodaj nowego pracownika', new_employee_path %><br />
+<br />
+Pokaż pracowników:
+<%= link_to 'Wszystkich', :department => "all" %>
+<%= link_to 'Szwalnia', :department => "1" %>
+<%= link_to 'Rozkrój', :department => "2" %>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nazwisko</th>
+    <th>Imię</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+    <td><%= employee.id %></td>
+    <td><%= employee.last_name %></td>
+    <td><%= employee.first_name %></td>
+    <td><%= link_to 'Show', employee %></td>
+    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+    <td><%= link_to 'Destroy', employee, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
