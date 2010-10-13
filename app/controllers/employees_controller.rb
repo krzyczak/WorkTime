@@ -26,6 +26,7 @@ class EmployeesController < ApplicationController
     if @employee.save
       redirect_to(@employee, :notice => 'Employee was successfully created.')
     else
+      @departments = Department.all
       render :action => "new"
     end
   end
@@ -37,6 +38,7 @@ class EmployeesController < ApplicationController
     if @employee.update_attributes(params[:employee])
       redirect_to(@employee, :notice => 'Employee was successfully updated.')
     else
+      @departments = Department.all
       render :action => "edit"
     end
   end

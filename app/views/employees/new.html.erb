@@ -1,5 +1,7 @@
-<h1>New employee</h1>
+<% title 'Dodawanie nowego pracownika' %>
+
+<%= content_tag :div, "Proszę wypełnić wszystkie pola...", :id => "flash_notice" %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Powrót do listy pracowników', employees_path %>

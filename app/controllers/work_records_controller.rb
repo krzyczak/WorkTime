@@ -2,17 +2,38 @@
 
 class WorkRecordsController < ApplicationController
   def index
-    #@work_records = WorkRecord.all
     if params[:report] == nil
       params[:report] = Hash.new
       params[:report][:start_date] = "#{Date.today.day}-#{Date.today.month}-#{Date.today.year}"
-      params[:report][:end_date] = "#{Date.today.day}-#{Date.today.month}-#{Date.today.year}"
+      params[:report_monthly] = "false"
+      params[:department_id] = 1
     end
     
     start_date = Date.parse(params[:report][:start_date])
-    end_date = Date.parse(params[:report][:end_date])
-    @work_records = WorkRecord.where("date >= ?", start_date).where("date <= ?", end_date).
-    select("SUM(gr3) as gr3_sum, *").group(:employee_id)
+    end_date = start_date
+    
+    if params[:report_monthly] == "true"
+      last_day = Date.civil(start_date.year, start_date.month, -1).day
+      start_date = Date.civil(start_date.year, start_date.month, 1)
+      end_date = Date.civil(start_date.year, start_date.month, last_day)
+    end
+    department_id = params[:department_id]
+    @work_records = WorkRecord.where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
+    .select("SUM(gr3) as gr3_sum")
+    .select("SUM(gr4) as gr4_sum")
+    .select("SUM(gr5) as gr5_sum")
+    .select("SUM(gr6) as gr6_sum")
+    .select("SUM(gr7) as gr7_sum")
+    .select("SUM(gr8) as gr8_sum")
+    .select("SUM(gr9) as gr9_sum")
+    .select("SUM(other_work) as other_work_sum")
+    .select("SUM(cleaning) as cleaning_sum")
+    .select("SUM(layover) as layover_sum")
+    .select("SUM(correction) as correction_sum")
+    .select("SUM(all_work_time) as all_work_time_sum")
+    .select("SUM(breaks) as breaks_sum")
+    .select("*")
+    .group(:employee_id)
   end
 
   def show
@@ -20,19 +41,21 @@ class WorkRecordsController < ApplicationController
   end
 
   def new
-    #session[:employee_id] ||= Employee.first.id
     @work_record = WorkRecord.new
     @work_record.employee = Employee.find(session[:employee_id])
     @work_record.date = session[:report_date]
+    @submit_button_text = "Dalej"
   end
 
   def edit
     @work_record = WorkRecord.find(params[:id])
+    @submit_button_text = "Zatwierdź"
   end
 
   def create
     @work_record = WorkRecord.new(params[:work_record])
     @work_record.department = Department.find(session[:department])
+    @work_record.breaks = @work_record.calculate_breaks
 
     if @work_record.save
       if @work_record.employee_id == Employee.last.id
@@ -43,6 +66,7 @@ class WorkRecordsController < ApplicationController
         redirect_to(new_work_record_path, :notice => 'Work record was successfully created.')
       end
     else
+      @submit_button_text = "Dalej"
       render :action => "new"
     end
   end
@@ -51,8 +75,11 @@ class WorkRecordsController < ApplicationController
     @work_record = WorkRecord.find(params[:id])
 
     if @work_record.update_attributes(params[:work_record])
+      @work_record.breaks = @work_record.calculate_breaks
+      @work_record.save!
       redirect_to(@work_record, :notice => 'Work record was successfully updated.')
     else
+      @submit_button_text = "Zatwierdź"
       render :action => "edit"
     end
   end
@@ -73,7 +100,7 @@ class WorkRecordsController < ApplicationController
     session[:department] = params[:department].to_i
     @employees = Employee.where(:department_id => session[:department])
     
-    report_date = Date.new(params[:report_configuration]["date(1i)"].to_i, params[:report_configuration]["date(2i)"].to_i, params[:report_configuration]["date(3i)"].to_i)
+    report_date = Date.parse(params[:report_configuration][:date])
     session[:report_date] = report_date
     last_employee_id = (WorkRecord.where(:date => report_date, :department_id => session[:department]).count == 0 ? 0 : WorkRecord.where(:date => report_date).last.employee_id)
     

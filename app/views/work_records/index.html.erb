@@ -1,68 +1,114 @@
-<h1>Listing work_records</h1>
+<% title('Czas pracy') %>
+<% javascript 'jquery-ui-1.8.5.custom.min', 'jquery.qtip-1.0.0-rc3.min' %>
 
-<%= link_to 'Utwórz nowy raport lub kontynuuj poprzedni', report_cofiguration_path %>
+<p id="information" class="info_box" style="display: none;">
+  Znajdujesz się w centrum raportów.<br/>
+  Domyślnie wyświetlony jest raport dzienny dla aktualnego dnia.
+  <br/><br/>
+  Aby wyświetlić raport dzienny wybierz konkretny dzień i od-znacz opcję 'Wyświetlić raport dla całego miesiąca?', a następnie kliknij przycisk 'Wyświetl'.
+  <br/><br/>
+  Aby dodać nowy raport, lub kontynuwać wypełaninie poprzedniego (nie dokończonego raportu), należy kliknąć przycisk 'Utwórz nowy raport lub kontynuuj poprzedni'.
+  <br/>
+  <a href="#" id="closer" style="margin-left: 67%;">Zamknij tę informację</a>
+</p>
+<script>
+  $(document).ready(function(){
+    $('#closer, #opener').click(function(){
+      $('#information').slideToggle();
+      $('#opener').text() == "Pokaż pomoc" ? $('#opener').text('Ukryj pomoc') : $('#opener').text('Pokaż pomoc');
+    });
+  });
+</script>
 
-<h1>Wyświetl raport dla okresu</h1>
-<%= form_tag '/work_records', :method => 'get' do -%>
-  Od: <%= text_field :report, :start_date, :class => 'calendar', :value => params[:report][:start_date] %><br/>
-  Do: <%= text_field :report, :end_date, :class => 'calendar', :value => params[:report][:end_date] %>
-  <%= button_to 'Wyświetl' %>
-  <script>
-  months = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
-	$(function() {
-		$(".calendar").datepicker({ dateFormat: 'dd-mm-yy', monthNames: months });
-	});
-	</script>
-<% end -%>
+<div>
+  <%= link_to raw('<span>Utwórz nowy raport lub kontynuuj poprzedni</span>'), report_cofiguration_path, :class => 'button' %>
+  <div class="clear"></div>
+</div>
+<div>
+  <%= form_tag '/work_records', :method => 'get', :id => 'report_configuration_form' do -%>
+    <table>
+      <tr>
+        <td><b>Wyświetl raport z dnia:</b></td><td><%= text_field :report, :start_date, :class => 'calendar', :value => params[:report][:start_date] %></td>
+      </tr>
+      <tr>
+        <td><b>Dla działu:</b></td><td><%= select_tag :department_id, options_for_select(Department.all.collect {|d| [d.name, d.id]}) %></td>
+      </tr>
+      <tr>
+        <td><b>Wyświetlić raport dla całego miesiąca?</b></td><td><%= check_box_tag :report_monthly, true, :checked => 'checked' %><br/></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div>
+            <%= link_to raw('<span>Wyświetl</span>'), "#", :onclick => "document.forms['report_configuration_form'].submit();", :class => 'button' %><a href="#" id="opener" style="margin-bottom: 10px; clear: both;">Pokaż pomoc</a>
+            <div class="clear"></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <%#= button_to 'Wyświetl' %>
+  <% end -%>
+</div>
+
+<% 
+if params[:report_monthly] == "true"
+  msg = "Aktualnie oglądasz raport na miesiąc #{month_name(Date.parse(params[:report][:start_date]).month)}, dla działu: #{Department.find(params[:department_id].to_i).name}"
+else
+  msg = "Aktualnie oglądasz raport z dnia #{params[:report][:start_date]}, dla działu: #{Department.find(params[:department_id].to_i).name}"
+end
+%>
+<%= content_tag :div, msg, :id => "flash_notice", :style => "width: 55%;" %>
 
 <table>
   <tr>
-    <th>Employee</th>
-    <th>Gr3</th>
-    <th>Gr4</th>
-    <th>Gr5</th>
-    <th>Gr6</th>
-    <th>Gr7</th>
-    <th>Gr8</th>
-    <th>Gr9</th>
-    <th>RAZEM AKORD</th>
-    <th>WYDAJNOŚĆ</th>
-    <th>Other work</th>
-    <th>Cleaning</th>
-    <th>Correction</th>
-    <th>Przerwy</th>
-    <th>Łączny czas przebywania w pracy</th>
-    <th>Data</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="small_font">Pracownik</th>
+    <th class="small_font">Gr3</th>
+    <th class="small_font">Gr4</th>
+    <th class="small_font">Gr5</th>
+    <th class="small_font">Gr6</th>
+    <th class="small_font">Gr7</th>
+    <th class="small_font">Gr8</th>
+    <th class="small_font">Gr9</th>
+    <th class="small_font">Razem akord</th>
+    <th class="small_font">Wydajność</th>
+    <th class="small_font">Inna praca</th>
+    <th class="small_font">Sprzątanie</th>
+    <th class="small_font">Postój / bad. lek.</th>
+    <th class="small_font">Poprawki</th>
+    <th class="small_font">Przerwy</th>
+    <th class="small_font">Łączny czas przebywania w pracy</th>
+    <% if params[:report_monthly] == "true" %>
+      <th class="small_font">Nadgodziny</th>
+    <% else -%>
+      <th></th>
+      <th></th>
+    <% end -%>
   </tr>
 
 <% @work_records.each do |work_record| %>
-  <tr>
-    <td><%= "#{work_record.employee_id}"%><%#" | #{work_record.employee.last_name} #{work_record.employee.first_name}" %></td>
+  <tr class="small_font">
+    <td><%= "#{work_record.employee.last_name} #{work_record.employee.first_name}"%></td>
     <td><%= work_record.gr3_sum %></td>
-    <td><%= work_record.gr4 %></td>
-    <td><%= work_record.gr5 %></td>
-    <td><%= work_record.gr6 %></td>
-    <td><%= work_record.gr7 %></td>
-    <td><%= work_record.gr8 %></td>
-    <td><%= work_record.gr9 %></td>
-    <td><%= work_record.accord_sum %></td>
-    <td><%= work_record.productivity %></td>
-    <td><%= work_record.other_work %></td>
-    <td><%= work_record.cleaning %></td>
-    <td><%= work_record.correction %></td>
-    <td><%= work_record.breaks %></td>
-    <td><%= work_record.all_work_time %></td>
-    <td><%= work_record.date %></td>
-    <td><%= link_to 'Show', work_record %></td>
-    <td><%= link_to 'Edit', edit_work_record_path(work_record) %></td>
-    <td><%= link_to 'Destroy', work_record, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= work_record.gr4_sum %></td>
+    <td><%= work_record.gr5_sum %></td>
+    <td><%= work_record.gr6_sum %></td>
+    <td><%= work_record.gr7_sum %></td>
+    <td><%= work_record.gr8_sum %></td>
+    <td><%= work_record.gr9_sum %></td>
+    <td><%= work_record.accord_all_groups %></td>
+    <td><%= work_record.productivity_sum %></td>
+    <td><%= work_record.other_work_sum %></td>
+    <td><%= work_record.cleaning_sum %></td>
+    <td><%= work_record.layover_sum %></td>
+    <td><%= work_record.correction_sum %></td>
+    <td><%= work_record.breaks_sum %></td>
+    <td><%= work_record.all_work_time_sum %></td>
+    <% if params[:report_monthly] == "true" %>
+      <td><%= work_record.all_work_time_sum-((work_record.breaks_sum/15)*465) %></td>
+    <% else -%>
+      <td><%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record) %></td>
+      <td><%= link_to raw('<img src="/images/cancel.png" title="Usuń wpis">'), work_record, :confirm => 'Czy na pewno usunąć wpis?', :method => :delete %></td>
+    <% end -%>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Work record', new_work_record_path %>

@@ -10,63 +10,52 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field :date %>
+  <%= f.hidden_field :employee_id %>
   
-  <div class="field">
-    <%= f.label :date %><br />
-    <%#= f.date_select :date %>
-    <%= @work_record.date %>
-    <%= f.hidden_field :date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :employee_id %>: <%= @work_record.employee.id %> <%= "#{@work_record.employee.first_name} #{@work_record.employee.last_name} | #{@work_record.employee.department.name}" %>
-    <%= f.hidden_field :employee_id %>
-  </div>
-  <div class="field">
-    <%= f.label :gr3 %><br />
-    <%= f.text_field :gr3 %>
-  </div>
-  <div class="field">
-    <%= f.label :gr4 %><br />
-    <%= f.text_field :gr4 %>
-  </div>
-  <div class="field">
-    <%= f.label :gr5 %><br />
-    <%= f.text_field :gr5 %>
-  </div>
-  <div class="field">
-    <%= f.label :gr6 %><br />
-    <%= f.text_field :gr6 %>
-  </div>
-  <div class="field">
-    <%= f.label :gr7 %><br />
-    <%= f.text_field :gr7 %>
-  </div>
-  <div class="field">
-    <%= f.label :gr8 %><br />
-    <%= f.text_field :gr8 %>
-  </div>
-  <div class="field">
-    <%= f.label :gr9 %><br />
-    <%= f.text_field :gr9 %>
-  </div>
-  <div class="field">
-    <%= f.label :other_work %><br />
-    <%= f.text_field :other_work %>
-  </div>
-  <div class="field">
-    <%= f.label :cleaning %><br />
-    <%= f.text_field :cleaning %>
-  </div>
-  <div class="field">
-    <%= f.label :correction %><br />
-    <%= f.text_field :correction %>
-  </div>
-  <div class="field">
-    <%= f.label :all_work_time %><br />
-    <%= f.text_field :all_work_time %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% msg = "Wprowadzasz dane dla pracownika: #{@work_record.employee.last_name} #{@work_record.employee.first_name}, z wydziału: #{@work_record.employee.department.name}, na dzień: #{@work_record.date.strftime("%d-%m-%Y").to_s}." %>
+  
+  <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 46%;" %>
+  
+  <table>
+    <tr>
+      <td>Grupa 3</td><td><%= f.text_field :gr3 %></td>
+    </tr>
+    <tr>
+      <td>Grupa 4</td><td><%= f.text_field :gr4 %></td>
+    </tr>
+    <tr>
+      <td>Grupa 5</td><td><%= f.text_field :gr5 %></td>
+    </tr>
+    <tr>
+      <td>Grupa 6</td><td><%= f.text_field :gr6 %></td>
+    </tr>
+    <tr>
+      <td>Grupa 7</td><td><%= f.text_field :gr7 %></td>
+    </tr>
+    <tr>
+      <td>Grupa 8</td><td><%= f.text_field :gr8 %></td>
+    </tr>
+    <tr>
+      <td>Grupa 9</td><td><%= f.text_field :gr9 %></td>
+    </tr>
+    <tr>
+      <td>Inna praca</td><td><%= f.text_field :other_work %></td>
+    </tr>
+    <tr>
+      <td>Sprzątanie</td><td><%= f.text_field :cleaning %></td>
+    </tr>
+    <tr>
+      <td>Postój badania lekarskie</td><td><%= f.text_field :layover %></td>
+    </tr>
+    <tr>
+      <td>Poprawki</td><td><%= f.text_field :correction %></td>
+    </tr>
+    <tr>
+      <td>Łączny czas przebywania w pracy</td><td><%= f.text_field :all_work_time %></td>
+    </tr>
+    <tr>
+      <td></td><td><%= f.submit "#{@submit_button_text}", :style=> "width: 70%" %> <%= link_to 'Anuluj', work_records_path %></td>
+    </tr>
+  </table>
 <% end %>

@@ -1,0 +1,77 @@
+#menu_bar {
+  /*position: absolute;
+  top: 30px;
+  left: 60px;
+  /*background: silver;*/
+}
+
+#nav {
+  height: 31px;
+  /*background: transparent url(http://tembo.pl/images/nav-background.gif) repeat-x top left;*/
+  /*background: darkorange;*/
+  /*background: purple;*/
+}
+
+#nav ul {
+  display: block;
+  margin: 0;
+	padding: 0;
+	list-style-type: none;
+	width: auto;
+}
+
+#nav ul li {
+  display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#nav ul li a {
+  /*background: silver;*/
+	background: #FAD1F0;
+
+  font-family: "Lucida Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+	display: block;
+	float: left;
+	/*color: #fff;*/
+	color: purple;
+	text-decoration: none;
+	padding: 8px 16px 7px;
+	border-bottom: none;
+	/*background: transparent url(http://tembo.pl/images/nav-divider.gif) no-repeat top right; /* separator */
+	
+	/* rounded corners */
+	-moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  /**/
+}
+
+.selected {
+  background: #383839;
+  
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+#nav ul li a:hover {
+  color: #FFFFFF;
+  /*border-bottom: 1px solid #383839;*/
+  background: #383839;
+  
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+#nav ul li.selected a {
+  color: #FFFFFF;
+  background: #383839;
+  border-bottom: 1px solid #383839;
+}

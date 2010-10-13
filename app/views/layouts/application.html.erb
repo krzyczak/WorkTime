@@ -3,41 +3,22 @@
   <head>
   <head>
     <title><%= h(yield(:title) || "Fakturant") %></title>
-    <%= stylesheet_link_tag 'application', 'jquery-ui-1.8.5.custom', :media => "all" %>
-    <%= javascript_include_tag :all %>
+    <%= stylesheet_link_tag 'application', 'menu', 'button', 'jquery-ui-1.8.5.custom', :media => "all" %>
+    <%= javascript_include_tag :defaults %>
+    <%#= javascript_include_tag '' %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="header_bar">
-      <div id="user_nav">
-        <%# if current_user %>
-          <%#= link_to "Edycja danych firmy", edit_user_path(:current) %>
-          <%#= link_to "Wyloguj", logout_path %>
-        <%# else %>
-          <%#= link_to "Rejestracja", new_user_path %>
-          <%#= link_to "Logowanie", login_path %>
-        <%# end %>
+    <div id="container" class="transparent_class">
+      <div id="menu_bar">
+        <div id="nav">
+          <ul>
+            <li class="<%= controller.controller_path == 'employees' ? 'selected' : '' %>"><%= link_to 'Pracownicy', employees_path %></li>
+            <li class="<%= controller.controller_path == 'work_records' ? 'selected' : '' %>"><%= link_to 'Czas Pracy', work_records_path %></li>
+          </ul>
+        </div>
       </div>
-      <div style="clear: both; margin: 0; padding: 0;">
-    </div>
-    
-    <div id="menu_bar">
-      <div id="nav">
-        <ul>
-          <li class="<%= controller.controller_path == 'employees' ? 'selected' : '' %>"><%= link_to 'Pracownicy', employees_path %></li>
-          <li class="<%= controller.controller_path == 'work_records' ? 'selected' : '' %>"><%= link_to 'Czas Pracy', work_records_path %></li>
-          <li class="<%= request[:action] == 'start' ? 'selected' : '' %>"><%#= link_to 'Start', start_path %></li>
-          <li class="<%= controller.controller_path == 'products' ? 'selected' : '' %>"><%#= link_to 'Produkty', products_path %></li>
-          <li class="<%= controller.controller_path == 'clients' ? 'selected' : '' %>"><%#= link_to 'Klienci', clients_path %></li>
-          <li class="<%= controller.controller_path == 'invoices' ? 'selected' : '' %>"><%#= link_to 'Faktury', invoices_path %></li>
-          <li class="<%= controller.controller_path == 'users' && request[:action] == 'edit' ? 'selected' : '' %>"><%#= link_to 'Dane firmy', edit_user_path(:current) %></li>
-        </ul>
-      </div>
-    </div>
-    <div style="clear: both; margin: 0; padding: 0;">
-  
-    <div id="container">
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
