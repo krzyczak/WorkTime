@@ -1,7 +1,7 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+pl:
   activerecord:
     errors:
       messages:
@@ -17,7 +17,7 @@ en:
         too_short: "{{attribute}} is too short (minimum is {{count}} characters)"
         wrong_length: "{{attribute}}: is the wrong length (should be {{count}} characters)" 
         taken: "{{attribute}}: has already been taken"
-        not_a_number: "{{attribute}}: is not a number"
+        not_a_number: "musi być liczbą w formacie 0.0"
         greater_than: "{{attribute}}: must be greater than {{count}}"
         greater_than_or_equal_to: "{{attribute}}: must be greater than or equal to {{count}}"
         equal_to: "{{attribute}}: must be equal to {{count}}"
@@ -28,7 +28,7 @@ en:
       models:
         work_record:
           attributes:
-            gr3: Grupa 3
+            gr3: "Grupa 3"
             gr4: Grupa 4
             gr5: Grupa 5
             gr6: Grupa 6

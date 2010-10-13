@@ -1,6 +1,9 @@
-<h1>Listing employees</h1>
+<% title 'Lista pracowników' %>
 
-<%= link_to 'Dodaj nowego pracownika', new_employee_path %><br />
+<div>
+  <%= link_to raw('<span>Dodaj nowego pracownika</span>'), new_employee_path, :class => 'button' %>
+  <div class="clear"></div>
+</div>
 <br />
 Pokaż pracowników:
 <%= link_to 'Wszystkich', :department => "all" %>
@@ -12,6 +15,7 @@ Pokaż pracowników:
     <th>ID</th>
     <th>Nazwisko</th>
     <th>Imię</th>
+    <th>Oddział</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,9 +26,10 @@ Pokaż pracowników:
     <td><%= employee.id %></td>
     <td><%= employee.last_name %></td>
     <td><%= employee.first_name %></td>
-    <td><%= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= link_to 'Destroy', employee, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= employee.department.name %></td>
+    <td><%#= link_to 'Show', employee %></td>
+    <td><%= link_to 'Edycja danych pracownika', edit_employee_path(employee) %></td>
+    <td><%= link_to 'Usuń pracownika', employee, :confirm => 'Czy jesteś pewien?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

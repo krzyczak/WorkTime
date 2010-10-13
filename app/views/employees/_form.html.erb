@@ -1,7 +1,7 @@
 <%= form_for(@employee) do |f| %>
   <% if @employee.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <h2>Nie można zapisać danych z powodu błędów (<%= @employee.errors.count %>):</h2>
 
       <ul>
       <% @employee.errors.full_messages.each do |msg| %>
@@ -10,20 +10,19 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :department %><br />
-    <%= f.select :department, options_for_select(@departments.collect {|d| [ d.name, d.id ] }) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+  <table>
+    <tr>
+      <td>Imię</td><td><%= f.text_field :first_name %></td>
+    <tr>
+    <tr>
+      <td>Nazwisko</td><td><%= f.text_field :last_name %></td>
+    <tr>
+    <tr>
+      <td>Wydział</td><td><%= f.select :department, options_for_select(@departments.collect {|d| [ d.name, d.id ] }) %></td>
+    <tr>
+    <tr>
+      <td>&nbsp;</td><td align="right"><%= f.submit 'Zatwierdź' %></td>
+    </tr>
+  </table>
 <% end %>
