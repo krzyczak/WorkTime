@@ -55,7 +55,7 @@ class WorkRecordsController < ApplicationController
   def create
     @work_record = WorkRecord.new(params[:work_record])
     @work_record.department = Department.find(session[:department])
-    @work_record.breaks = @work_record.calculate_breaks
+    #@work_record.breaks = @work_record.calculate_breaks
 
     if @work_record.save
       if @work_record.employee_id == Employee.last.id
@@ -75,8 +75,8 @@ class WorkRecordsController < ApplicationController
     @work_record = WorkRecord.find(params[:id])
 
     if @work_record.update_attributes(params[:work_record])
-      @work_record.breaks = @work_record.calculate_breaks
-      @work_record.save!
+      #@work_record.breaks = @work_record.calculate_breaks
+      #@work_record.save!
       redirect_to(@work_record, :notice => 'Work record was successfully updated.')
     else
       @submit_button_text = "Zatwierdź"

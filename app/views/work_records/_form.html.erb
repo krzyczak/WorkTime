@@ -17,6 +17,7 @@
   
   <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 46%;" %>
   
+  <div style="float:left;">
   <table>
     <tr>
       <td>Grupa 3</td><td><%= f.text_field :gr3 %></td>
@@ -52,10 +53,35 @@
       <td>Poprawki</td><td><%= f.text_field :correction %></td>
     </tr>
     <tr>
-      <td>Łączny czas przebywania w pracy</td><td><%= f.text_field :all_work_time %></td>
+      <td>Łączny czas przebywania w pracy</td><td><%= f.text_field :all_work_time, :value => 465.0 %></td>
     </tr>
     <tr>
       <td></td><td><%= f.submit "#{@submit_button_text}", :style=> "width: 70%" %> <%= link_to 'Anuluj', work_records_path %></td>
     </tr>
   </table>
+  </div>
+  <div style="float: right;">
+    <table>
+      <tr>
+        <td colspan="2">Przerwy obliczane są automatycznie</td>
+      </tr>
+      <tr>
+        <td>Przerwy</td>
+        <td><%= f.text_field :breaks, :readonly => :readonly, :value => "15.0" %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="clear">&nbsp;</div>
+  <script>
+    $('#work_record_all_work_time').change(function(){
+      //var all_work_time = parseFloat($('#work_record_all_work_time')).toFixed(2);
+      var all_work_time = parseFloat($('#work_record_all_work_time').val());
+      var breaks = 0;
+      if(all_work_time > 360) {
+        breaks = 15;
+      }
+      $('#work_record_breaks').val(breaks);
+      //alert($('#work_record_breaks').val());
+    });
+  </script>
 <% end %>
