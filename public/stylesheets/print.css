@@ -1,9 +1,14 @@
+@page {
+  size: A4 landscape;
+  margin: 2cm;
+}
+
 body {
   /* background: http://www.kewaneelibrary.org/j0435878.jpg */
-  background: #94D43A url(/images/background.jpg) no-repeat fixed;
+  background: #FFFFFF;
   font-family: Verdana, Helvetica, Arial;
   /*font-size: 14px;*/
-  font-size: 13px;
+  font-size: 10pt;
 }
 
 a img {
@@ -21,12 +26,10 @@ a {
 }
 
 #container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -186,40 +189,31 @@ select {
 
 /****************************** Styles for pdf *************************************/
 
-@media print {
-  body { background: #FFF; }
-  #container {
-    width: auto;
-    margin: 0;
-    padding: 0;
-    border: none;
-  }
-  
-  .slick_button {
-    display: none;
-  }
-  
-  #menu_bar {
-    display: none;
-  }
-  
-  .report_params_form {
-    display: none;
-  }
-  
-  #flash_notice, #flash_error, #flash_alert {
-    clear: both;
-    padding: 5px 8px;
-    margin: 10px 0;
-    width: 700px;
-  }
 
-  #flash_notice {
-    background-color: #FFF;
-    border: none;
-  }
-  
-  .line_break {
-    page-break-before: always;
-  }
+.slick_button {
+  display: none;
+}
+
+#menu_bar {
+  display: none;
+}
+
+.report_params_form {
+  display: none;
+}
+
+#flash_notice, #flash_error, #flash_alert {
+  clear: both;
+  padding: 5px 8px;
+  margin: 10px 0;
+  width: 700px;
+}
+
+#flash_notice {
+  background-color: #FFF;
+  border: none;
+}
+
+.line_break {
+  page-break-before: always;
 }

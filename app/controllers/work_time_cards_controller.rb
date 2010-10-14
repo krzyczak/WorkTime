@@ -4,6 +4,7 @@ class WorkTimeCardsController < ApplicationController
   def index
     @employees = Employee.all
     provide_meta_data
+    provide_print_version_if_requested
   end
   
   def show
@@ -25,6 +26,7 @@ class WorkTimeCardsController < ApplicationController
       whole_month[wr.date.day-1] = wr
     end
     @work_recods = whole_month
+    provide_print_version_if_requested
   end
   
   private

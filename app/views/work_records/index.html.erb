@@ -20,11 +20,13 @@
   });
 </script>
 
-<div>
+<div class="report_params_form">
   <%= link_to raw('<span>Utwórz nowy raport lub kontynuuj poprzedni</span>'), report_cofiguration_path, :class => 'button' %>
+  <%#= slick_button('Utwórz nowy raport lub kontynuuj poprzedni', report_cofiguration_path) %>
+  <%= slick_button('Drukuj raport', :print => true) %>
   <div class="clear"></div>
 </div>
-<div>
+<div class="report_params_form">
   <%= form_tag '/work_records', :method => 'get', :id => 'report_configuration_form' do -%>
     <table>
       <tr>
@@ -49,6 +51,8 @@
     <%#= button_to 'Wyświetl' %>
   <% end -%>
 </div>
+
+<br/>
 
 <% 
 if params[:report_monthly] == "true"

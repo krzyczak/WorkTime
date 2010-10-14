@@ -2,8 +2,10 @@
 <% javascript 'jquery-ui-1.8.5.custom.min' %>
 
 <%= slick_button('Wyświetl raport dla wszystkich pracowników...', work_time_cards_path) %>
+<br/>
+<%= slick_button('Drukuj raport', :print => true) %>
 
-<div>
+<div class="report_params_form">
   <%= form_tag '/work_time_cards/show', :method => 'get', :id => 'report_configuration_form' do -%>
     <table>
       <tr>
@@ -19,10 +21,7 @@
       <tr>
         <td></td>
         <td>
-          <div>
-            <%= link_to raw('<span>OK</span>'), "#", :onclick => "document.forms['report_configuration_form'].submit();", :class => 'button' %>
-            <div class="clear"></div>
-          </div>
+          <%= slick_button_submit('OK', "document.forms['report_configuration_form'].submit();") %>
         </td>
       </tr>
     </table>

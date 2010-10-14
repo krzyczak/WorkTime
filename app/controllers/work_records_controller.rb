@@ -34,6 +34,8 @@ class WorkRecordsController < ApplicationController
     .select("SUM(breaks) as breaks_sum")
     .select("*")
     .group(:employee_id)
+    
+    provide_print_version_if_requested
   end
 
   def show

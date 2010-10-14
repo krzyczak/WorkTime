@@ -44,5 +44,11 @@ module WorkTime
     
     require 'hirb'
     Hirb::View.enable
+    
+    config.middleware.use PDFKit::Middleware, :print_media_type => true, :orientation => 'Landscape', :page_size => 'A4', :margin_top => '0.39in', :margin_right => '0.39in', :margin_bottom => '0.39in', :margin_left => '0.39in'
+
+    #PDFKit.configure do |config|
+    #  config.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
+    #end
   end
 end
