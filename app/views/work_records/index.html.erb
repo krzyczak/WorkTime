@@ -81,7 +81,7 @@ end
       <th class="small_font">Nadgodziny</th>
     <% else -%>
       <th></th>
-      <th></th>
+      <!--th></th-->
     <% end -%>
   </tr>
 
@@ -107,7 +107,7 @@ end
       <td><%= work_record.all_work_time_sum-((work_record.breaks_sum/15)*465) %></td>
     <% else -%>
       <td><%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record) %></td>
-      <td><%= link_to raw('<img src="/images/cancel.png" title="Usuń wpis">'), work_record, :confirm => 'Czy na pewno usunąć wpis?', :method => :delete %></td>
+      <!--><td--><%#= link_to raw('<img src="/images/cancel.png" title="Usuń wpis">'), work_record, :confirm => 'Czy na pewno usunąć wpis?', :method => :delete %><!--></td-->
     <% end -%>
   </tr>
 <% end %>

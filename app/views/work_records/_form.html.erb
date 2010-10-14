@@ -70,6 +70,42 @@
         <td><%= f.text_field :breaks, :readonly => :readonly, :value => "15.0" %></td>
       </tr>
     </table>
+
+    <table>
+      <tr>
+        <td colspan="3">Dane do miesięcznej ewidencji czasu pracy</td>
+      </tr>
+      <tr>
+        <td colspan="2">Czas przepracowany ogółem</td>
+        <td><%= text_field :work_time, :sum, :readonly => :readonly, :value => "480.0" %></td>
+      </tr>
+      <tr>
+        <td colspan="2">W tym</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Nadgodziny z dopłatą 50%</td>
+        <td><%= f.text_field :overtime50 %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Nadgodziny z dopłatą 100%</td>
+        <td><%= f.text_field :overtime100 %></td>
+      </tr>
+      <tr>
+        <td colspan="2">Urlopy</td>
+        <td><%= f.text_field :leave %></td>
+      </tr>
+      <tr>
+        <td colspan="2">Choroba</td>
+        <td><%= f.text_field :sickness %></td>
+      </tr>
+      <tr>
+        <td colspan="2">NN</td>
+        <td><%= f.text_field :nn %></td>
+      </tr>
+    </table>
   </div>
   <div class="clear">&nbsp;</div>
   <script>
@@ -81,6 +117,7 @@
         breaks = 15;
       }
       $('#work_record_breaks').val(breaks);
+      $('#work_time_sum').val(breaks+all_work_time);
       //alert($('#work_record_breaks').val());
     });
   </script>

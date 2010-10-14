@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101013111834) do
+ActiveRecord::Schema.define(:version => 20101014112306) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(:version => 20101013111834) do
     t.date     "date"
     t.integer  "department_id"
     t.decimal  "breaks"
+    t.decimal  "overtime50"
+    t.decimal  "overtime100"
+    t.decimal  "leave"
+    t.decimal  "sickness"
+    t.decimal  "nn"
   end
 
 end
