@@ -3,7 +3,7 @@
 
 <%= slick_button('Wyświetl raport dla wszystkich pracowników...', work_time_cards_path) %>
 <br/>
-<%= slick_button('Drukuj raport', :print => true) %>
+<%= slick_button('Drukuj raport', :print => true, :report_year => params[:report_year], :report_month => params[:report_month], :employee_id => params[:employee_id]) %>
 
 <div class="report_params_form">
   <%= form_tag '/work_time_cards/show', :method => 'get', :id => 'report_configuration_form' do -%>

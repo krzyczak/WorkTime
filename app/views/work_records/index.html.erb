@@ -23,7 +23,7 @@
 <div class="report_params_form">
   <%= link_to raw('<span>Utwórz nowy raport lub kontynuuj poprzedni</span>'), report_cofiguration_path, :class => 'button' %>
   <%#= slick_button('Utwórz nowy raport lub kontynuuj poprzedni', report_cofiguration_path) %>
-  <%= slick_button('Drukuj raport', :print => true) %>
+  <%= slick_button('Drukuj raport', :print => true, :report => {:start_date => params[:report][:start_date]}, :department_id => params[:department_id], :report_monthly => params[:report_monthly]) %>
   <div class="clear"></div>
 </div>
 <div class="report_params_form">
