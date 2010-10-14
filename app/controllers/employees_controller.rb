@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(params[:employee])
 
     if @employee.save
-      redirect_to(@employee, :notice => 'Employee was successfully created.')
+      redirect_to(@employee, :notice => 'Pomyślnie dodano nowego pracownika.')
     else
       @departments = Department.all
       render :action => "new"
@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(params[:employee])
-      redirect_to(@employee, :notice => 'Employee was successfully updated.')
+      redirect_to(@employee, :notice => 'Pomyślnie zaktualizowano dane pracownika.')
     else
       @departments = Department.all
       render :action => "edit"

@@ -60,10 +60,10 @@ class WorkRecordsController < ApplicationController
     if @work_record.save
       if @work_record.employee_id == Employee.last.id
         session[:employee_id] = nil
-        redirect_to(work_records_path, :notice => 'Work record was successfully created.')
+        redirect_to(work_records_path, :notice => 'Pomyślnie dodano wpis.')
       else
         session[:employee_id] = next_employee_id
-        redirect_to(new_work_record_path, :notice => 'Work record was successfully created.')
+        redirect_to(new_work_record_path, :notice => 'Pomyślnie dodano wpis.')
       end
     else
       @submit_button_text = "Dalej"
@@ -77,7 +77,7 @@ class WorkRecordsController < ApplicationController
     if @work_record.update_attributes(params[:work_record])
       #@work_record.breaks = @work_record.calculate_breaks
       #@work_record.save!
-      redirect_to(@work_record, :notice => 'Work record was successfully updated.')
+      redirect_to(@work_record, :notice => 'Pomyślnie zaktualizowano wpis.')
     else
       @submit_button_text = "Zatwierdź"
       render :action => "edit"
