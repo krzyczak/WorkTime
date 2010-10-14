@@ -16,6 +16,6 @@
     end
     @work_recods = whole_month
   -%>
-  <h3><%= "Miesięczna karta ewidencji czasu pracy. #{employee.last_name} #{employee.first_name}, #{@months[@report_month].first} #{@report_year} r." %></h3>
+  <h3><%= raw("Miesięczna karta ewidencji czasu pracy.<br>#{employee.last_name} #{employee.first_name}, #{@months[@report_month].first} #{@report_year} r.") %></h3>
   <%= render :partial => 'employee_work_evidence' %>
 <% end -%>
