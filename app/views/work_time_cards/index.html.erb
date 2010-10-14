@@ -2,8 +2,10 @@
 <% javascript 'jquery-ui-1.8.5.custom.min' %>
 
 <%= slick_button('Wyświetl raport dla pojedyńczego pracownika...', "#{work_time_cards_path}/show") %>
+<br/>
+<%= slick_button('Drukuj raport', :print => true) %>
 
-<div>
+<div class="report_params_form">
   <%= form_tag '/work_time_cards', :method => 'get', :id => 'report_configuration_form' do -%>
     <table>
       <tr>
@@ -38,4 +40,5 @@
   -%>
   <h3><%= raw("Miesięczna karta ewidencji czasu pracy.<br>#{employee.last_name} #{employee.first_name}, #{@months[@report_month-1].first} #{@report_year} r.") %></h3>
   <%= render :partial => 'employee_work_evidence' %>
+  <div class="line_break">&nbsp;</div>
 <% end -%>

@@ -9,6 +9,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'hirb'
 
+gem "pdfkit", ">=0.4.3"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

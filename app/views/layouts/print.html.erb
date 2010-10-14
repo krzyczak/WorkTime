@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Fakturant") %></title>
+    <%= stylesheet_link_tag 'print', 'menu', 'button', 'jquery-ui-1.8.5.custom', :media => "all" %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body onload="window.print();">
+    <div id="container" class="transparent_class">
+      <%- if show_title? -%>
+        <h1><%=h yield(:title) %></h1>
+      <%- end -%>
+      
+      <%= yield %>
+    </div>
+  </body>
+</html>
