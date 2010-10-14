@@ -1,0 +1,78 @@
+<table>
+  <tr>
+    <th class="smaller_font">Lp.</th>
+    <th class="smaller_font">-------</th>
+    <th class="smaller_font">1</th>
+    <th class="smaller_font">2</th>
+    <th class="smaller_font">3</th>
+    <th class="smaller_font">4</th>
+    <th class="smaller_font">5</th>
+    <th class="smaller_font">6</th>
+    <th class="smaller_font">7</th>
+    <th class="smaller_font">8</th>
+    <th class="smaller_font">9</th>
+    <th class="smaller_font">10</th>
+    <th class="smaller_font">11</th>
+    <th class="smaller_font">12</th>
+    <th class="smaller_font">13</th>
+    <th class="smaller_font">14</th>
+    <th class="smaller_font">15</th>
+    <th class="smaller_font">16</th>
+    <th class="smaller_font">17</th>
+    <th class="smaller_font">18</th>
+    <th class="smaller_font">19</th>
+    <th class="smaller_font">20</th>
+    <th class="smaller_font">21</th>
+    <th class="smaller_font">22</th>
+    <th class="smaller_font">23</th>
+    <th class="smaller_font">24</th>
+    <th class="smaller_font">25</th>
+    <th class="smaller_font">26</th>
+    <th class="smaller_font">27</th>
+    <th class="smaller_font">28</th>
+    <th class="smaller_font">29</th>
+    <th class="smaller_font">30</th>
+    <th class="smaller_font">31</th>
+    <th class="smaller_font">R-m</th>
+  </tr>
+
+  <tr class="smaller_font">
+    <td>1</td>
+    <td style="font-size: 7pt;">Czas pracy,<br/>w tym:</td>
+    <% sum = 0.0 %>
+    <% @work_recods.each do |work_record| %>
+      <% if work_record == 0 %>
+        <td>0.0</td>
+      <% else -%>
+        <td><%= ((work_record.all_work_time+work_record.breaks).to_f/60).round(2) %></td>
+        <% sum += ((work_record.all_work_time+work_record.breaks).to_f/60).round(2) %>
+      <% end -%>
+    <% end -%>
+    <td><%= sum %></td>
+  </tr>
+  <tr class="smaller_font">
+    <td>&nbsp;</td>
+    <td style="font-size: 7pt;">nadgodz. 50%</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "overtime50"} %>
+  </tr>
+  <tr class="smaller_font">
+    <td>&nbsp;</td>
+    <td style="font-size: 7pt;">nadgodz. 100%</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "overtime100"} %>
+  </tr>
+  <tr class="smaller_font">
+    <td>2</td>
+    <td>Urlopy</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "leave"} %>
+  </tr>
+  <tr class="smaller_font">
+    <td>3</td>
+    <td>Choroba</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "sickness"} %>
+  </tr>
+  <tr class="smaller_font">
+    <td>4</td>
+    <td>NN</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "nn"} %>
+  </tr>
+</table>

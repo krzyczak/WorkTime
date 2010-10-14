@@ -116,12 +116,16 @@ table {
 }
 
 table td, table th {
-  padding: 3px 8px;
+  padding: 3px 3px;
   border: solid 1px #CCC;
 }
 
 table .small_font {
   font-size: 7pt;
+}
+
+table .smaller_font {
+  font-size: 8pt;
 }
 
 .transparent_class {
