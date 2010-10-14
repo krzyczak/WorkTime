@@ -1,119 +1,35 @@
 <% title('Miesięczna karta ewidencji czasu pracy') %>
-<% javascript 'jquery-ui-1.8.5.custom.min', 'jquery.qtip-1.0.0-rc3.min' %>
+<% javascript 'jquery-ui-1.8.5.custom.min' %>
 
-<% msg = "Aktualnie oglądasz miesięczną kartę ewidencji pracy dla pracownika: #{@employee.first_name} #{@employee.last_name} za miesiąć: #wybrany_miesiąc." %>
+<%= slick_button('Wyświetl raport dla wszystkich pracowników...', work_time_cards_path) %>
+
+<div>
+  <%= form_tag '/work_time_cards/show', :method => 'get', :id => 'report_configuration_form' do -%>
+    <table>
+      <tr>
+        <td><b>Wyświetl raport za miesiąc i rok:</b></td>
+        <td>
+          <%= select_tag :report_month, options_for_select(@months, Date.today.month) %>
+          <%= select_tag :report_year, options_for_select(@years, Date.today.year) %>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Dla pracownika</b></td><td><%= select_tag :employee_id, options_for_select(Employee.all.collect {|e| ["#{e.last_name} #{e.first_name}", e.id]}) %><br/></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div>
+            <%= link_to raw('<span>OK</span>'), "#", :onclick => "document.forms['report_configuration_form'].submit();", :class => 'button' %>
+            <div class="clear"></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  <% end -%>
+</div>
+
+<% msg = "Dane dla pracownika: #{@employee.first_name} #{@employee.last_name} za: #{@months[@report_month].first} #{@report_year}." %>
 <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 55%;" %>
 
-<table>
-  <tr>
-    <th class="small_font">Lp.</th>
-    <th class="small_font">----------------</th>
-    <th class="small_font">1</th>
-    <th class="small_font">2</th>
-    <th class="small_font">3</th>
-    <th class="small_font">4</th>
-    <th class="small_font">5</th>
-    <th class="small_font">6</th>
-    <th class="small_font">7</th>
-    <th class="small_font">8</th>
-    <th class="small_font">9</th>
-    <th class="small_font">10</th>
-    <th class="small_font">11</th>
-    <th class="small_font">12</th>
-    <th class="small_font">13</th>
-    <th class="small_font">14</th>
-    <th class="small_font">15</th>
-    <th class="small_font">16</th>
-    <th class="small_font">17</th>
-    <th class="small_font">18</th>
-    <th class="small_font">19</th>
-    <th class="small_font">20</th>
-    <th class="small_font">21</th>
-    <th class="small_font">22</th>
-    <th class="small_font">23</th>
-    <th class="small_font">24</th>
-    <th class="small_font">25</th>
-    <th class="small_font">26</th>
-    <th class="small_font">27</th>
-    <th class="small_font">28</th>
-    <th class="small_font">29</th>
-    <th class="small_font">30</th>
-    <th class="small_font">31</th>
-    <th class="small_font">R-m / Suma godzin (minut)</th>
-  </tr>
-
-<%# @work_records.each do |work_record| %>
-  <tr class="small_font">
-    <td>1</td>
-    <td>Czas pracy przepracowany ogółem, w tym</td>
-    <% @work_recods.each do |work_record| %>
-      <% if work_record == 0 %>
-        <td>0.0</td>
-      <% else -%>
-        <td><%= (work_record.all_work_time+work_record.breaks).to_f/60 %></td>
-      <% end -%>
-    <% end -%>
-    <td><%= "suma" %></td>
-  </tr>
-  <tr class="small_font">
-    <td>2</td>
-    <td>nadgodziny 50%</td>
-    <% @work_recods.each do |work_record| %>
-      <% if work_record == 0 %>
-        <td>0.0</td>
-      <% else -%>
-        <td><%= work_record.overtime50 %></td>
-      <% end -%>
-    <% end -%>
-    <td><%= "suma" %></td>
-  </tr>
-  <tr class="small_font">
-    <td>3</td>
-    <td>nadgodziny 100%</td>
-    <% @work_recods.each do |work_record| %>
-      <% if work_record == 0 %>
-        <td>0.0</td>
-      <% else -%>
-        <td><%= work_record.overtime100 %></td>
-      <% end -%>
-    <% end -%>
-    <td><%= "work_record.overtime100" %></td>
-  </tr>
-  <tr class="small_font">
-    <td>4</td>
-    <td>Urlopy</td>
-    <% @work_recods.each do |work_record| %>
-      <% if work_record == 0 %>
-        <td>0.0</td>
-      <% else -%>
-        <td><%= work_record.leave %></td>
-      <% end -%>
-    <% end -%>
-    <td><%= "work_record.leave" %></td>
-  </tr>
-  <tr class="small_font">
-    <td>5</td>
-    <td>Choroba</td>
-    <% @work_recods.each do |work_record| %>
-      <% if work_record == 0 %>
-        <td>0.0</td>
-      <% else -%>
-        <td><%= work_record.sickness %></td>
-      <% end -%>
-    <% end -%>
-    <td><%= "work_record.sickness" %></td>
-  </tr>
-  <tr class="small_font">
-    <td>6</td>
-    <td>NN</td>
-    <% @work_recods.each do |work_record| %>
-      <% if work_record == 0 %>
-        <td>0.0</td>
-      <% else -%>
-        <td><%= work_record.nn %></td>
-      <% end -%>
-    <% end -%>
-    <td><%= "work_record.nn" %></td>
-  </tr>
-<%# end %>
-</table>
+<%= render :partial => 'employee_work_evidence' %>

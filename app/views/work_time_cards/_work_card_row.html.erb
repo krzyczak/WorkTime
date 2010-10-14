@@ -1,0 +1,10 @@
+<% sum = 0.0 %>
+<% @work_recods.each do |work_record| %>
+  <% if work_record == 0 %>
+    <td>0.0</td>
+  <% else -%>
+    <td><%= ((work_record.send(value_to_calculate.to_sym)).to_f/60).round(2) %></td>
+    <% sum += ((work_record.send(value_to_calculate.to_sym)).to_f/60).round(2) %>
+  <% end -%>
+<% end -%>
+<td><%= sum %></td>
