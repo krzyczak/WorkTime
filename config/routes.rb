@@ -4,6 +4,10 @@ WorkTime::Application.routes.draw do
   
   resources :work_records
   resources :employees
+  
+  resources :work_time_cards
+  
+  root :to => "work_records#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
