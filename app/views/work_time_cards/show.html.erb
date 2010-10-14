@@ -29,7 +29,7 @@
   <% end -%>
 </div>
 
-<% msg = "Dane dla pracownika: #{@employee.first_name} #{@employee.last_name} za: #{@months[@report_month].first} #{@report_year}." %>
+<% msg = "Dane dla pracownika: #{@employee.first_name} #{@employee.last_name} za: #{@months[@report_month-1].first} #{@report_year}." %>
 <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 55%;" %>
 
 <%= render :partial => 'employee_work_evidence' %>
