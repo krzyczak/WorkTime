@@ -16,4 +16,8 @@ module ApplicationHelper
   def slick_button(button_text, button_link)
     raw("<div>" + link_to(raw("<span>#{button_text}</span>"), button_link, :class => 'button') + raw("<div class=\"clear\"></div></div>"))
   end
+  
+  def slick_button_submit(button_text, action)
+    raw("<div>" + link_to(raw("<span>#{button_text}</span>"), "#", :onclick => action, :class => 'button') + raw("<div class=\"clear\"></div></div>"))
+  end
 end
