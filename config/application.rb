@@ -41,5 +41,8 @@ module WorkTime
     config.filter_parameters += [:password]
     
     config.action_view.javascript_expansions[:defaults] = %w(jquery-1.4.2.min rails application)
+    
+    require 'hirb'
+    Hirb::View.enable
   end
 end
