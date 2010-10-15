@@ -187,7 +187,7 @@ select {
   border: solid 1px #6C6;
 }
 
-/****************************** Styles for pdf *************************************/
+/****************************** Styles for print *************************************/
 
 
 .slick_button {
@@ -216,4 +216,8 @@ select {
 
 .line_break {
   page-break-before: always;
+}
+
+.dont_print {
+  display: none;
 }
