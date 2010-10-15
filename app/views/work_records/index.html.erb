@@ -3,11 +3,17 @@
 
 <p id="information" class="info_box" style="display: none;">
   Znajdujesz się w centrum raportów.<br/>
-  Domyślnie wyświetlony jest raport dzienny dla aktualnego dnia.
+  Domyślnie wyświetlony jest raport dzienny dla aktualnego dnia, dla działu Szwalnia.
   <br/><br/>
-  Aby wyświetlić raport dzienny wybierz konkretny dzień i od-znacz opcję 'Wyświetlić raport dla całego miesiąca?', a następnie kliknij przycisk 'Wyświetl'.
+  <b>Aby wyświetlić raport dzienny</b> wybierz konkretny dzień z kalendarza (pole 'Wyświetlić raport z dnia:'), następnie wybierz opcję: 'tylko wybrany dzień' i kliknij przycisk 'Wyświetl'.
   <br/><br/>
-  Aby dodać nowy raport, lub kontynuwać wypełaninie poprzedniego (nie dokończonego raportu), należy kliknąć przycisk 'Utwórz nowy raport lub kontynuuj poprzedni'.
+  <b>Aby wyświetlić raport z całego miesiąca:</b><br/>
+  &nbsp;&nbsp;&nbsp;1. Wybierz w kalendarzu dowolny dzień z miesiąca, dla którego dane chcesz uzyskać.<br/>
+  &nbsp;&nbsp;&nbsp;2. Wybierz interesujący dział (Szwalnia lub Rozkrój)<br/>
+  &nbsp;&nbsp;&nbsp;3. Zaznacz opcję 'Suma z całego miesiąca'<br/>
+  &nbsp;&nbsp;&nbsp;4. Kliknij przycisk 'Wyświetl'
+  <br/><br/>
+  <b>Aby dodać nowy raport, lub kontynuwać wypełaninie poprzedniego</b> (nie dokończonego raportu), należy kliknąć przycisk 'Utwórz nowy raport lub kontynuuj poprzedni'.
   <br/>
   <a href="#" id="closer" style="margin-left: 67%;">Zamknij tę informację</a>
 </p>
@@ -23,20 +29,29 @@
 <div class="report_params_form">
   <%= link_to raw('<span>Utwórz nowy raport lub kontynuuj poprzedni</span>'), report_cofiguration_path, :class => 'button' %>
   <%#= slick_button('Utwórz nowy raport lub kontynuuj poprzedni', report_cofiguration_path) %>
-  <%= slick_button('Drukuj raport', :print => true, :report => {:start_date => params[:report][:start_date]}, :department_id => params[:department_id], :report_monthly => params[:report_monthly]) %>
+  <%= slick_button('Drukuj raport', :print => true, :report => {:start_date => params[:report][:start_date], :monthly => params[:report][:monthly] }, :department_id => params[:department_id]) %>
   <div class="clear"></div>
 </div>
 <div class="report_params_form">
   <%= form_tag '/work_records', :method => 'get', :id => 'report_configuration_form' do -%>
     <table>
       <tr>
-        <td><b>Wyświetl raport z dnia:</b></td><td><%= text_field :report, :start_date, :class => 'calendar', :value => params[:report][:start_date] %></td>
+        <td>
+          <b>Wyświetl raport z dnia:</b>
+        </td>
+        <td><%= text_field :report, :start_date, :class => 'calendar', :value => params[:report][:start_date] %></td>
       </tr>
       <tr>
         <td><b>Dla działu:</b></td><td><%= select_tag :department_id, options_for_select(Department.all.collect {|d| [d.name, d.id]}) %></td>
       </tr>
       <tr>
-        <td><b>Wyświetlić raport dla całego miesiąca?</b></td><td><%= check_box_tag :report_monthly, true, :checked => 'checked' %><br/></td>
+        <!--td><b>Wyświetlić raport dla całego miesiąca?</b></td><td><%#= check_box_tag :report_monthly, true, :checked => 'checked' %><br/></td-->
+          <td><b>Typ raportu:</b></td>
+          <td>
+            <%= radio_button :report, :monthly, "true" %> Suma z całego miesiąca<br/>
+            <%= radio_button :report, :monthly, "false", :checked => 'checked' %> Tylko wybrany dzień
+          </td>
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -55,7 +70,8 @@
 <br/>
 
 <% 
-if params[:report_monthly] == "true"
+#if params[:report_monthly] == "true"
+if params[:report][:monthly] == "true"
   msg = "Aktualnie oglądasz raport na miesiąc #{month_name(Date.parse(params[:report][:start_date]).month)}, dla działu: #{Department.find(params[:department_id].to_i).name}"
 else
   msg = "Aktualnie oglądasz raport z dnia #{params[:report][:start_date]}, dla działu: #{Department.find(params[:department_id].to_i).name}"
@@ -81,10 +97,11 @@ end
     <th class="small_font">Poprawki</th>
     <th class="small_font">Przerwy</th>
     <th class="small_font">Łączny czas przebywania w pracy</th>
-    <% if params[:report_monthly] == "true" %>
+    <%# if params[:report_monthly] == "true" %>
+    <% if params[:report][:monthly] == "true" %>
       <th class="small_font">Nadgodziny</th>
     <% else -%>
-      <th></th>
+      <th class="dont_print"></th>
       <!--th></th-->
     <% end -%>
   </tr>
@@ -107,10 +124,11 @@ end
     <td><%= work_record.correction_sum %></td>
     <td><%= work_record.breaks_sum %></td>
     <td><%= work_record.all_work_time_sum %></td>
-    <% if params[:report_monthly] == "true" %>
+    <%# if params[:report_monthly] == "true" %>
+    <% if params[:report][:monthly] == "true" %>
       <td><%= work_record.all_work_time_sum-((work_record.breaks_sum/15)*465) %></td>
     <% else -%>
-      <td><%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record) %></td>
+      <td class="dont_print"><%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record) %></td>
       <!--><td--><%#= link_to raw('<img src="/images/cancel.png" title="Usuń wpis">'), work_record, :confirm => 'Czy na pewno usunąć wpis?', :method => :delete %><!--></td-->
     <% end -%>
   </tr>

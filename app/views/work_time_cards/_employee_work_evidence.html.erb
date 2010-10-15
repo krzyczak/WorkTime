@@ -2,15 +2,15 @@
   <tr>
     <th class="smaller_font">Lp.</th>
     <th class="smaller_font">-------</th>
-    <th class="smaller_font">1</th>
-    <th class="smaller_font">2</th>
-    <th class="smaller_font">3</th>
-    <th class="smaller_font">4</th>
-    <th class="smaller_font">5</th>
-    <th class="smaller_font">6</th>
-    <th class="smaller_font">7</th>
-    <th class="smaller_font">8</th>
-    <th class="smaller_font">9</th>
+    <th class="smaller_font">1&nbsp;</th>
+    <th class="smaller_font">2&nbsp;</th>
+    <th class="smaller_font">3&nbsp;</th>
+    <th class="smaller_font">4&nbsp;</th>
+    <th class="smaller_font">5&nbsp;</th>
+    <th class="smaller_font">6&nbsp;</th>
+    <th class="smaller_font">7&nbsp;</th>
+    <th class="smaller_font">8&nbsp;</th>
+    <th class="smaller_font">9&nbsp;</th>
     <th class="smaller_font">10</th>
     <th class="smaller_font">11</th>
     <th class="smaller_font">12</th>
@@ -42,7 +42,7 @@
     <% sum = 0.0 %>
     <% @work_recods.each do |work_record| %>
       <% if work_record == 0 %>
-        <td>0.0</td>
+        <td>&nbsp;</td>
       <% else -%>
         <td><%= ((work_record.all_work_time+work_record.breaks).to_f/60).round(2) %></td>
         <% sum += ((work_record.all_work_time+work_record.breaks).to_f/60).round(2) %>

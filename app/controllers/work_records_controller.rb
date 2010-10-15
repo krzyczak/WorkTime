@@ -5,19 +5,25 @@ class WorkRecordsController < ApplicationController
     if params[:report] == nil
       params[:report] = Hash.new
       params[:report][:start_date] = "#{Date.today.day}-#{Date.today.month}-#{Date.today.year}"
-      params[:report_monthly] = "false"
+      #params[:report_monthly] = "false"
       params[:department_id] = 1
+      
+      #params[:report][:monthly] = "false"
     end
     
     start_date = Date.parse(params[:report][:start_date])
     end_date = start_date
     
-    if params[:report_monthly] == "true"
+    #if params[:report_monthly] == "true"
+    if params[:report][:monthly] == "true"
       last_day = Date.civil(start_date.year, start_date.month, -1).day
       start_date = Date.civil(start_date.year, start_date.month, 1)
       end_date = Date.civil(start_date.year, start_date.month, last_day)
     end
     department_id = params[:department_id]
+    employees = Employee.where(:department_id => department_id)
+    work_records = WorkRecord.where(:department_id => department_id)
+    #@work_records = WorkRecord.where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     @work_records = WorkRecord.where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     .select("SUM(gr3) as gr3_sum")
     .select("SUM(gr4) as gr4_sum")
@@ -33,7 +39,26 @@ class WorkRecordsController < ApplicationController
     .select("SUM(all_work_time) as all_work_time_sum")
     .select("SUM(breaks) as breaks_sum")
     .select("*")
-    .group(:employee_id)
+    .group(:employee_id).order("last_name ASC").find(:all, :joins => "LEFT JOIN employees ON employees.id = work_records.employee_id")
+    
+    #think of the above query to do it AREL style
+    #@work_records = WorkRecord.where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
+    #.select("SUM(gr3) as gr3_sum")
+    #.select("SUM(gr4) as gr4_sum")
+    #.select("SUM(gr5) as gr5_sum")
+    #.select("SUM(gr6) as gr6_sum")
+    #.select("SUM(gr7) as gr7_sum")
+    #.select("SUM(gr8) as gr8_sum")
+    #.select("SUM(gr9) as gr9_sum")
+    #.select("SUM(other_work) as other_work_sum")
+    #.select("SUM(cleaning) as cleaning_sum")
+    #.select("SUM(layover) as layover_sum")
+    #.select("SUM(correction) as correction_sum")
+    #.select("SUM(all_work_time) as all_work_time_sum")
+    #.select("SUM(breaks) as breaks_sum")
+    #.select("*")
+    #.group(:employee_id)
+    
     
     provide_print_version_if_requested
   end
