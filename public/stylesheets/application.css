@@ -122,6 +122,7 @@ table td, table th {
 
 table .small_font {
   font-size: 7pt;
+  text-align: center;
 }
 
 table .smaller_font {
