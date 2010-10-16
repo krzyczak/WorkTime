@@ -42,14 +42,14 @@
         <td><%= text_field :report, :start_date, :class => 'calendar', :value => params[:report][:start_date] %></td>
       </tr>
       <tr>
-        <td><b>Dla działu:</b></td><td><%= select_tag :department_id, options_for_select(Department.all.collect {|d| [d.name, d.id]}) %></td>
+        <td><b>Dla działu:</b></td><td><%= select_tag :department_id, options_for_select(Department.all.collect {|d| [d.name, d.id]}, params[:department_id]) %></td>
       </tr>
       <tr>
         <!--td><b>Wyświetlić raport dla całego miesiąca?</b></td><td><%#= check_box_tag :report_monthly, true, :checked => 'checked' %><br/></td-->
           <td><b>Typ raportu:</b></td>
           <td>
-            <%= radio_button :report, :monthly, "true" %> Suma z całego miesiąca<br/>
-            <%= radio_button :report, :monthly, "false", :checked => 'checked' %> Tylko wybrany dzień
+            <%= radio_button :report, :monthly, "true", :checked => (params[:report][:monthly] == "true" ? 'checked' : 'no') %> Suma z całego miesiąca<br/>
+            <%= radio_button :report, :monthly, "false", :checked => (params[:report][:monthly] == "false" ? 'checked' : 'no') %> Tylko wybrany dzień
           </td>
         </td>
       </tr>
