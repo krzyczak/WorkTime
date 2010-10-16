@@ -8,7 +8,7 @@ class WorkRecordsController < ApplicationController
       #params[:report_monthly] = "false"
       params[:department_id] = 1
       
-      #params[:report][:monthly] = "false"
+      params[:report][:monthly] = "false"
     end
     
     start_date = Date.parse(params[:report][:start_date])
