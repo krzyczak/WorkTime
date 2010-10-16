@@ -72,9 +72,9 @@
 <% 
 #if params[:report_monthly] == "true"
 if params[:report][:monthly] == "true"
-  msg = "Aktualnie oglądasz raport na miesiąc #{month_name(Date.parse(params[:report][:start_date]).month)}, dla działu: #{Department.find(params[:department_id].to_i).name}"
+  msg = "Raport na miesiąc #{month_name(Date.parse(params[:report][:start_date]).month)} #{Date.parse(params[:report][:start_date]).year}, dla działu: #{Department.find(params[:department_id].to_i).name}"
 else
-  msg = "Aktualnie oglądasz raport z dnia #{params[:report][:start_date]}, dla działu: #{Department.find(params[:department_id].to_i).name}"
+  msg = "Raport z dnia #{params[:report][:start_date]}, dla działu: #{Department.find(params[:department_id].to_i).name}"
 end
 %>
 <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 55%;" %>
@@ -109,6 +109,7 @@ end
   </tr>
   </thead>
   <tfoot>
+    <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
   </tfoot>
   
   <tbody>
