@@ -80,6 +80,7 @@ end
 <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 55%;" %>
 
 <table>
+  <thead>
   <tr>
     <th class="small_font">Pracownik</th>
     <th class="small_font">Gr3</th>
@@ -105,6 +106,11 @@ end
       <!--th></th-->
     <% end -%>
   </tr>
+  </thead>
+  <tfoot>
+  </tfoot>
+  
+  <tbody>
 
 <% @work_records.each do |work_record| %>
   <tr class="small_font">
@@ -133,4 +139,5 @@ end
     <% end -%>
   </tr>
 <% end %>
+  </tbody>
 </table>

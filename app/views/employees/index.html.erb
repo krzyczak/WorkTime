@@ -15,9 +15,9 @@ Pokaż pracowników:
     <th>ID</th>
     <th>Nazwisko</th>
     <th>Imię</th>
-    <th>Oddział</th>
+    <th width="50%">Oddział</th>
     <th></th>
-    <th></th>
+
     <th></th>
   </tr>
 
@@ -26,10 +26,9 @@ Pokaż pracowników:
     <td><%= employee.id %></td>
     <td><%= employee.last_name %></td>
     <td><%= employee.first_name %></td>
-    <td><%= employee.department.name %></td>
-    <td><%#= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edycja danych pracownika', edit_employee_path(employee) %></td>
-    <td><%= link_to 'Usuń pracownika', employee, :confirm => 'Czy jesteś pewien?', :method => :delete %></td>
+    <td align="center"><%= employee.department.name %></td>
+    <td style="padding: 5px 10px;"><%= link_to raw('<img src="/images/edit.png" title="Edycja danych pracownika">'), edit_employee_path(employee) %></td>
+    <td style="padding: 5px 10px;"><%= link_to raw('<img src="/images/cancel.png" title="Usunięcie pracownika">'), employee, :confirm => 'Czy na pewno usunąć pracownika?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
