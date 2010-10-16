@@ -20,43 +20,81 @@
   <div style="float:left;">
   <table>
     <tr>
-      <td>Grupa 3</td><td><%= f.text_field :gr3 %></td>
+      <td>Grupa 3</td><td><%= f.text_field :gr3, :tabindex => "1" %></td>
+      <td>&nbsp;</td>
+      <td colspan="2"><b>Przerwy obliczane są automatycznie</b></td>
     </tr>
     <tr>
-      <td>Grupa 4</td><td><%= f.text_field :gr4 %></td>
+      <td>Grupa 4</td><td><%= f.text_field :gr4, :tabindex => "2" %></td>
+      <td>&nbsp;</td>
+      <td>Przerwy</td>
+      <td><%= f.text_field :breaks, :readonly => :readonly, :value => "15.0", :tabindex => "13" %></td>
     </tr>
     <tr>
-      <td>Grupa 5</td><td><%= f.text_field :gr5 %></td>
+      <td>Grupa 5</td><td><%= f.text_field :gr5, :tabindex => "3" %></td>
+      <td>&nbsp;</td>
+      <td colspan="2"><b>Dane do miesięcznej ewidencji czasu pracy</b></td>
     </tr>
     <tr>
-      <td>Grupa 6</td><td><%= f.text_field :gr6 %></td>
+      <td>Grupa 6</td><td><%= f.text_field :gr6, :tabindex => "4" %></td>
+      <td>&nbsp;</td>
+      <td>Czas przepracowany ogółem</td>
+      <td><%= text_field :work_time, :sum, :readonly => :readonly, :value => "480.0", :tabindex => "14" %></td>
     </tr>
     <tr>
-      <td>Grupa 7</td><td><%= f.text_field :gr7 %></td>
+      <td>Grupa 7</td><td><%= f.text_field :gr7, :tabindex => "5" %></td>
+      <td>&nbsp;</td>
+      <td>W tym</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Grupa 8</td><td><%= f.text_field :gr8 %></td>
+      <td>Grupa 8</td><td><%= f.text_field :gr8, :tabindex => "6" %></td>
+      <td>&nbsp;</td>
+      <td>Nadgodziny z dopłatą 50%</td>
+      <td><%= f.text_field :overtime50, :tabindex => "15" %></td>
     </tr>
     <tr>
-      <td>Grupa 9</td><td><%= f.text_field :gr9 %></td>
+      <td>Grupa 9</td><td><%= f.text_field :gr9, :tabindex => "7" %></td>
+      <td>&nbsp;</td>
+      <td>Nadgodziny z dopłatą 100%</td>
+      <td><%= f.text_field :overtime100, :tabindex => "16" %></td>
     </tr>
     <tr>
-      <td>Inna praca</td><td><%= f.text_field :other_work %></td>
+      <td>Inna praca</td><td><%= f.text_field :other_work, :tabindex => "8" %></td>
+      <td>&nbsp;</td>
+      <td>Urlopy</td>
+      <td><%= f.text_field :leave, :tabindex => "17" %></td>
     </tr>
     <tr>
-      <td>Sprzątanie</td><td><%= f.text_field :cleaning %></td>
+      <td>Sprzątanie</td><td><%= f.text_field :cleaning, :tabindex => "9" %></td>
+      <td>&nbsp;</td>
+      <td>Choroba</td>
+      <td><%= f.text_field :sickness, :tabindex => "18" %></td>
     </tr>
     <tr>
-      <td>Postój badania lekarskie</td><td><%= f.text_field :layover %></td>
+      <td>Postój badania lekarskie</td><td><%= f.text_field :layover, :tabindex => "10" %></td>
+      <td>&nbsp;</td>
+      <td>NN</td>
+      <td><%= f.text_field :nn, :tabindex => "19" %></td>
     </tr>
     <tr>
-      <td>Poprawki</td><td><%= f.text_field :correction %></td>
+      <td>Poprawki</td><td><%= f.text_field :correction, :tabindex => "11" %></td>
+      <td>&nbsp;</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Łączny czas przebywania w pracy</td><td><%= f.text_field :all_work_time, :value => 465.0 %></td>
+      <td>Łączny czas przebywania w pracy</td><td><%= f.text_field :all_work_time, :value => 465.0, :tabindex => "12" %></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td></td><td><%= f.submit "#{@submit_button_text}", :style=> "width: 70%" %> <%= link_to 'Anuluj', work_records_path %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= f.submit "#{@submit_button_text}", :style => "width: 70%", :tabindex => "20" %> <%= link_to 'Anuluj', work_records_path, :tabindex => "21" %></td>
     </tr>
   </table>
   </div>
