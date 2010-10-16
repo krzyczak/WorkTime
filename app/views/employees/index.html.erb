@@ -12,20 +12,23 @@ Pokaż pracowników:
 
 <table>
   <tr>
-    <th>ID</th>
+    <th>Lp.</th>
     <th>Nazwisko</th>
     <th>Imię</th>
-    <th width="50%">Oddział</th>
+    <th>ID</th>
+    <th width="40%">Oddział</th>
     <th></th>
 
     <th></th>
   </tr>
 
+<% lp = 0 %>
 <% @employees.each do |employee| %>
   <tr>
-    <td><%= employee.id %></td>
+    <td><%= lp += 1 %></td>
     <td><%= employee.last_name %></td>
     <td><%= employee.first_name %></td>
+    <td><%= employee.id %></td>
     <td align="center"><%= employee.department.name %></td>
     <td style="padding: 5px 10px;"><%= link_to raw('<img src="/images/edit.png" title="Edycja danych pracownika">'), edit_employee_path(employee) %></td>
     <td style="padding: 5px 10px;"><%= link_to raw('<img src="/images/cancel.png" title="Usunięcie pracownika">'), employee, :confirm => 'Czy na pewno usunąć pracownika?', :method => :delete %></td>

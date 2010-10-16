@@ -82,6 +82,7 @@ end
 <table>
   <thead>
   <tr>
+    <th class="small_font">Lp.</th>
     <th class="small_font">Pracownik</th>
     <th class="small_font">Gr3</th>
     <th class="small_font">Gr4</th>
@@ -97,7 +98,7 @@ end
     <th class="small_font">Postój / bad. lek.</th>
     <th class="small_font">Poprawki</th>
     <th class="small_font">Przerwy</th>
-    <th class="small_font">Łączny czas przebywania w pracy</th>
+    <th class="small_font">Łączny czas<br/>przebywania<br/>w pracy</th>
     <%# if params[:report_monthly] == "true" %>
     <% if params[:report][:monthly] == "true" %>
       <th class="small_font">Nadgodziny</th>
@@ -112,9 +113,11 @@ end
   
   <tbody>
 
+<% lp = 0 %>
 <% @work_records.each do |work_record| %>
   <tr class="small_font">
-    <td><%= "#{work_record.employee.last_name} #{work_record.employee.first_name}"%></td>
+    <td><%= lp += 1 %></td>
+    <td style="text-align: left;"><%= "#{work_record.employee.last_name} #{work_record.employee.first_name}"%></td>
     <td><%= work_record.gr3_sum %></td>
     <td><%= work_record.gr4_sum %></td>
     <td><%= work_record.gr5_sum %></td>

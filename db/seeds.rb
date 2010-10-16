@@ -30,7 +30,7 @@ Employee.create(:last_name => 'Durko', :first_name => 'Magdalena', :department_i
 Employee.create(:last_name => 'Dyderska', :first_name => 'Danuta', :department_id => 1)
 Employee.create(:last_name => 'Dykiel', :first_name => 'Krystyna', :department_id => 1)
 Employee.create(:last_name => 'Dzikuć', :first_name => 'Marzanna', :department_id => 1)
-Employee.create(:last_name => 'ErkiertPelagia', :first_name => 'ErkiertPelagia', :department_id => 1)
+Employee.create(:last_name => 'Erkiert', :first_name => 'Pelagia', :department_id => 1)
 Employee.create(:last_name => 'Figurska', :first_name => 'Barbara', :department_id => 1)
 Employee.create(:last_name => 'Flies', :first_name => 'Ewa', :department_id => 1)
 Employee.create(:last_name => 'Franc', :first_name => 'Małgorzata', :department_id => 1)
