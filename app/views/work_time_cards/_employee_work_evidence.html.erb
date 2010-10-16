@@ -38,7 +38,7 @@
 
   <tr class="smaller_font">
     <td>1</td>
-    <td style="font-size: 7pt;">Czas pracy,<br/>w tym:</td>
+    <td style="font-size: 8pt;">Czas pracy,<br/>w tym:</td>
     <% sum = 0.0 %>
     <% @work_recods.each do |work_record| %>
       <% if work_record == 0 %>
@@ -52,12 +52,12 @@
   </tr>
   <tr class="smaller_font">
     <td>&nbsp;</td>
-    <td style="font-size: 7pt;">nadgodz. 50%</td>
+    <td style="font-size: 8pt;">nadgodz. 50%</td>
     <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "overtime50"} %>
   </tr>
   <tr class="smaller_font">
     <td>&nbsp;</td>
-    <td style="font-size: 7pt;">nadgodz. 100%</td>
+    <td style="font-size: 8pt;">nadgodz. 100%</td>
     <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "overtime100"} %>
   </tr>
   <tr class="smaller_font">
