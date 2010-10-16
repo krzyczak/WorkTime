@@ -28,28 +28,29 @@ ActiveRecord::Schema.define(:version => 20101014112306) do
 
   create_table "work_records", :force => true do |t|
     t.integer  "employee_id"
-    t.decimal  "gr3",           :default => 0.0, :null => false
-    t.decimal  "gr4",           :default => 0.0, :null => false
-    t.decimal  "gr5",           :default => 0.0, :null => false
-    t.decimal  "gr6",           :default => 0.0, :null => false
-    t.decimal  "gr7",           :default => 0.0, :null => false
-    t.decimal  "gr8",           :default => 0.0, :null => false
-    t.decimal  "gr9",           :default => 0.0, :null => false
-    t.decimal  "other_work",    :default => 0.0, :null => false
-    t.decimal  "cleaning",      :default => 0.0, :null => false
-    t.decimal  "layover",       :default => 0.0, :null => false
-    t.decimal  "correction",    :default => 0.0, :null => false
-    t.decimal  "all_work_time", :default => 0.0, :null => false
+    t.decimal  "gr3",              :default => 0.0, :null => false
+    t.decimal  "gr4",              :default => 0.0, :null => false
+    t.decimal  "gr5",              :default => 0.0, :null => false
+    t.decimal  "gr6",              :default => 0.0, :null => false
+    t.decimal  "gr7",              :default => 0.0, :null => false
+    t.decimal  "gr8",              :default => 0.0, :null => false
+    t.decimal  "gr9",              :default => 0.0, :null => false
+    t.decimal  "other_work",       :default => 0.0, :null => false
+    t.decimal  "cleaning",         :default => 0.0, :null => false
+    t.decimal  "layover",          :default => 0.0, :null => false
+    t.decimal  "correction",       :default => 0.0, :null => false
+    t.decimal  "all_work_time",    :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date"
     t.integer  "department_id"
     t.decimal  "breaks"
-    t.decimal  "overtime50"
-    t.decimal  "overtime100"
-    t.decimal  "leave"
-    t.decimal  "sickness"
-    t.decimal  "nn"
+    t.decimal  "overtime50",       :default => 0.0, :null => false
+    t.decimal  "overtime100",      :default => 0.0, :null => false
+    t.decimal  "vacation_leave",   :default => 0.0, :null => false
+    t.decimal  "occasional_leave", :default => 0.0, :null => false
+    t.decimal  "sickness",         :default => 0.0, :null => false
+    t.decimal  "nn",               :default => 0.0, :null => false
   end
 
 end

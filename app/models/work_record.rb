@@ -5,6 +5,7 @@ class WorkRecord < ActiveRecord::Base
   belongs_to :department
   
   validates_numericality_of :gr3, :gr4, :gr5, :gr6, :gr7, :gr8, :gr9, :other_work, :cleaning, :layover, :correction, :all_work_time,
+    :overtime50, :overtime100, :vacation_leave, :occasional_leave, :sickness, :nn,
     :greater_than_or_equal_to => 0
   
   #validates :gr3, :gr4, :gr5, :gr6, :gr7, :gr8, :gr9, :other_work, :cleaning, :layover, :correction, :all_work_time,
