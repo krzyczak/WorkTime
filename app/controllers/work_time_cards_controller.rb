@@ -13,8 +13,16 @@ class WorkTimeCardsController < ApplicationController
     2000.upto(2020) {|y| @years.push(["#{y} r.", y])}
     @employee = (params[:employee_id].nil? ? Employee.first : Employee.find(params[:employee_id].to_i))
     
-    @report_month = (params[:report_month].nil? ? Date.today.month : params[:report_month].to_i)
-    @report_year = (params[:report_year].nil? ? Date.today.year : params[:report_year].to_i)
+    if params[:report_month].nil?
+      params[:report_month] = Date.today.month
+    end
+    
+    if params[:report_year].nil?
+      params[:report_year] = Date.today.year
+    end
+    
+    @report_month = params[:report_month].to_i#(params[:report_month].nil? ? Date.today.month : params[:report_month].to_i)
+    @report_year = params[:report_year].to_i#(params[:report_year].nil? ? Date.today.year : params[:report_year].to_i)
     
     start_date = Date.new(@report_year, @report_month, 1)
     end_date = Date.new(@report_year, @report_month, last_day(Date.new(@report_year, @report_month, -1)))
@@ -36,8 +44,16 @@ class WorkTimeCardsController < ApplicationController
     @years = []
     2000.upto(2020) {|y| @years.push(["#{y} r.", y])}
     
-    @report_month = (params[:report_month].nil? ? Date.today.month : params[:report_month].to_i)
-    @report_year = (params[:report_year].nil? ? Date.today.year : params[:report_year].to_i)
+    if params[:report_month].nil?
+      params[:report_month] = Date.today.month
+    end
+    
+    if params[:report_year].nil?
+      params[:report_year] = Date.today.year
+    end
+    
+    @report_month = params[:report_month].to_i#(params[:report_month].nil? ? Date.today.month : params[:report_month].to_i)
+    @report_year = params[:report_year].to_i#(params[:report_year].nil? ? Date.today.year : params[:report_year].to_i)
     
     @start_date = Date.new(@report_year, @report_month, 1)
     @end_date = Date.new(@report_year, @report_month, last_day(Date.new(@report_year, @report_month, -1)))

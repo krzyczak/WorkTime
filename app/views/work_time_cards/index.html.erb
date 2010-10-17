@@ -11,8 +11,8 @@
       <tr>
         <td><b>Wyświetl raport za miesiąc i rok:</b></td>
         <td>
-          <%= select_tag :report_month, options_for_select(@months, Date.today.month) %>
-          <%= select_tag :report_year, options_for_select(@years, Date.today.year) %>
+          <%= select_tag :report_month, options_for_select(@months, params[:report_month] ) %>
+          <%= select_tag :report_year, options_for_select(@years, params[:report_year]) %>
         </td>
       </tr>
       <tr>
