@@ -88,11 +88,11 @@ class WorkRecordsController < ApplicationController
     @work_record.department = Department.find(session[:department_id])
 
     if @work_record.save
-      if @work_record.employee_id == Employee.last.id
-        #session[:employee_id] = nil
+      done_count = (WorkRecord.where(:department_id => session[:department_id]).where(:date => session[:report_date])).count
+      
+      if done_count == Employee.where(:department_id => session[:department_id]).count
         redirect_to(work_records_path, :notice => t(:successfully_added_work_record))
       else
-        #session[:employee_id] = next_employee_id
         redirect_to(new_work_record_path, :notice => t(:successfully_added_work_record))
       end
     else
