@@ -178,6 +178,10 @@ select {
   width: 50px;
 }
 
+.no_border_td {
+  border: none;
+}
+
 /****************************** Info box *************************************/
 
 .info_box {
