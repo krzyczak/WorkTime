@@ -2,7 +2,7 @@
 
 class EmployeesController < ApplicationController
   def index
-    @employees = department_select == 'all' ? Employee.all : Employee.where(:department_id => department_select)
+    @employees = (department_select == 'all' ? Employee.select : Employee.where(:department_id => department_select)).order("last_name ASC")
   end
 
   def show
@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(params[:employee])
 
     if @employee.save
-      redirect_to(@employee, :notice => 'Pomyślnie dodano nowego pracownika.')
+      redirect_to(@employee, :notice => t(:successfully_added_employee)
     else
       @departments = Department.all
       render :action => "new"
@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(params[:employee])
-      redirect_to(@employee, :notice => 'Pomyślnie zaktualizowano dane pracownika.')
+      redirect_to(@employee, :notice => t(:successfully_updated_employee)
     else
       @departments = Department.all
       render :action => "edit"
