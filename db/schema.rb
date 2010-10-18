@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101018153551) do
+ActiveRecord::Schema.define(:version => 20101014112306) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(:version => 20101018153551) do
   create_table "employees", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "due_vacation_leave", :default => 26, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
-    t.integer  "due_vacation_leave", :default => 26, :null => false
   end
 
   create_table "work_records", :force => true do |t|
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(:version => 20101018153551) do
     t.decimal  "overtime100",      :default => 0.0, :null => false
     t.decimal  "vacation_leave",   :default => 0.0, :null => false
     t.decimal  "occasional_leave", :default => 0.0, :null => false
+    t.decimal  "care_leave",       :default => 0.0, :null => false
     t.decimal  "sickness",         :default => 0.0, :null => false
     t.decimal  "nn",               :default => 0.0, :null => false
-    t.decimal  "care_leave",       :default => 0.0, :null => false
   end
 
 end
