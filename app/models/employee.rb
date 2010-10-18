@@ -5,4 +5,12 @@ class Employee < ActiveRecord::Base
   belongs_to :department
   
   validates_presence_of :first_name, :last_name
+  
+  def remaining_vacation_leave
+    minutes_of_used_vacation_leave = 0
+    work_records.each do |wr|
+      minutes_of_used_vacation_leave += wr.vacation_leave
+    end
+    (due_vacation_leave - (minutes_of_used_vacation_leave/480)).to_i
+  end
 end

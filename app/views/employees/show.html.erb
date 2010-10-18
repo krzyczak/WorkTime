@@ -15,5 +15,23 @@
   </tr>
 </table>
 
-<%= link_to 'Edycja danych pracownika', edit_employee_path(@employee) %> |
-<%= link_to 'Powrót do listy wszystkich pracowników', employees_path %>
+<div id="leave_data">
+  <table class="show_employee">
+    <thead>
+      <tr><th colspan="2">Dane urlopów</th></tr>
+    </thead>
+    <tr>
+      <td>Urlop wypoczynkowy należny</td>
+      <td><%= @employee.due_vacation_leave %> dni</td>
+    </tr>
+    <tr>
+      <td>Urlop wypoczynkowy pozostały do wykorzystania</td>
+      <td><%= @employee.remaining_vacation_leave %> dni</td>
+    </tr>
+  </table>
+</div>
+
+<div class="slick_button">
+  <%= slick_button_raw('Edycja danych pracownika', edit_employee_path(@employee)) %>
+  <%= slick_button('Powrót do listy wszystkich pracowników', employees_path) %>
+</div>
