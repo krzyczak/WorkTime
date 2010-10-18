@@ -33,7 +33,7 @@ a.button:hover span {
     padding: 6px 0 4px 18px; /* push text down 1px */
 }
 
-input[type='text'] {
+/*input[type='text'] {
   border: solid 1px;
   text-align: right;
-}
+}*/
