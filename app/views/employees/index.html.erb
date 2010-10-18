@@ -18,7 +18,7 @@ Pokaż pracowników:
     <th>ID</th>
     <th width="40%">Oddział</th>
     <th></th>
-
+    <th></th>
     <th></th>
   </tr>
 
@@ -30,8 +30,15 @@ Pokaż pracowników:
     <td><%= employee.first_name %></td>
     <td><%= employee.id %></td>
     <td align="center"><%= employee.department.name %></td>
-    <td style="padding: 5px 10px;"><%= link_to raw('<img src="/images/edit.png" title="Edycja danych pracownika">'), edit_employee_path(employee) %></td>
-    <td style="padding: 5px 10px;"><%= link_to raw('<img src="/images/cancel.png" title="Usunięcie pracownika">'), employee, :confirm => 'Czy na pewno usunąć pracownika?', :method => :delete %></td>
+    <td style="padding: 5px 10px;">
+      <%= link_to raw('<img src="/images/show.png" title="Szczegółowe dane pracownika">'), employee_path(employee) %>
+    </td>
+    <td style="padding: 5px 10px;">
+      <%= link_to raw('<img src="/images/edit.png" title="Edycja danych pracownika">'), edit_employee_path(employee) %>
+    </td>
+    <td style="padding: 5px 10px;">
+      <%= link_to raw('<img src="/images/cancel.png" title="Usunięcie pracownika">'), employee, :confirm => 'Czy na pewno usunąć pracownika?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>

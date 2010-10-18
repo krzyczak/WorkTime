@@ -1,13 +1,19 @@
-<p>
-  <b>First name:</b>
-  <%= @employee.first_name %>
-</p>
+<% title('Szczegółowe dane pracownika') %>
 
-<p>
-  <b>Last name:</b>
-  <%= @employee.last_name %>
-</p>
-
+<table class="show_employee">
+  <tr>
+    <th>ID</th>
+    <th>Nazwisko</th>
+    <th>Imię</th>
+    <th>Oddział</th>
+  </tr>
+  <tr>
+    <td><%= @employee.id %></td>
+    <td><%= @employee.last_name %></td>
+    <td><%= @employee.first_name %></td>
+    <td><%= @employee.department.name %></td>
+  </tr>
+</table>
 
 <%= link_to 'Edycja danych pracownika', edit_employee_path(@employee) %> |
 <%= link_to 'Powrót do listy wszystkich pracowników', employees_path %>

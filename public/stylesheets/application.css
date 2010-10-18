@@ -182,6 +182,10 @@ select {
   border: none;
 }
 
+.show_employee td, .show_employee tr {
+  padding: 10px 25px;
+}
+
 /****************************** Info box *************************************/
 
 .info_box {

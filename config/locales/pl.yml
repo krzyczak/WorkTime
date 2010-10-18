@@ -3,6 +3,9 @@
 
 pl:
   successfully_added_work_record: 'Pomyślnie dodano wpis.'
+  successfully_updated_work_record: 'Pomyślnie zaktualizowano wpis.'
+  successfully_added_employee: 'Pomyślnie dodano nowego pracownika.'
+  successfully_updated_employee: 'Pomyślnie zaktualizowano dane pracownika.'
   activerecord:
     errors:
       messages:
@@ -18,9 +21,9 @@ pl:
         too_short: "{{attribute}} is too short (minimum is {{count}} characters)"
         wrong_length: "{{attribute}}: is the wrong length (should be {{count}} characters)" 
         taken: "{{attribute}}: has already been taken"
-        not_a_number: "musi być liczbą w formacie 0.0"
+        not_a_number: "Pole {{attribute}} musi być liczbą w formacie 0.0"
         greater_than: "{{attribute}}: must be greater than {{count}}"
-        greater_than_or_equal_to: "{{attribute}}: must be greater than or equal to {{count}}"
+        greater_than_or_equal_to: "Pole {{attribute}}: musi być większe lub równe {{count}}"
         equal_to: "{{attribute}}: must be equal to {{count}}"
         less_than: "{{attribute}}: must be less than {{count}}"
         less_than_or_equal_to: "{{attribute}}: must be less than or equal to {{count}}"     

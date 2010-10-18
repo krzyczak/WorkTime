@@ -105,7 +105,7 @@ class WorkRecordsController < ApplicationController
     @work_record = WorkRecord.find(params[:id])
 
     if @work_record.update_attributes(params[:work_record])
-      redirect_to(@work_record, :notice => 'Pomyślnie zaktualizowano wpis.')
+      redirect_to(@work_record, :notice => t(:successfully_updated_work_record)
     else
       @submit_button_text = "Zatwierdź"
       render :action => "edit"
