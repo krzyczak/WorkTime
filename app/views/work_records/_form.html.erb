@@ -26,7 +26,7 @@
       <td>Grupa 5</td>
       <td><%= f.number_field :gr5, :tabindex => "3", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
-      <td colspan="2"><b>Dane do miesięcznej ewidencji czasu pracy</b></td>
+      <td colspan="2"><b>Dane do ewidencji miesięcznej</b></td>
     </tr>
     <tr>
       <td>Grupa 6</td>
@@ -95,8 +95,10 @@
       <td class="no_border_td"></td>
       <td class="no_border_td"></td>
       <td class="no_border_td"></td>
-      <td class="no_border_td"></td>
-      <td style="width: 200px;"><%= f.submit "#{@submit_button_text}", :style => "width: 70%", :tabindex => "21" %> <%= link_to 'Anuluj', work_records_path, :tabindex => "22" %></td>
+      <td class="no_border_td" colspan="2" style="text-align: right;">
+        <%= f.submit "#{@submit_button_text}", :style => "width: 70%", :tabindex => "21" %> <%= link_to 'Anuluj',
+          work_records_path, :tabindex => "22" %>
+      </td>
     </tr>
   </table>
   </div>
