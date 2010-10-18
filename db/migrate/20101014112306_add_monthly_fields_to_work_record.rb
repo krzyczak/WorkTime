@@ -4,6 +4,7 @@ class AddMonthlyFieldsToWorkRecord < ActiveRecord::Migration
     add_column :work_records, :overtime100, :decimal, :null => false, :default => 0.0
     add_column :work_records, :vacation_leave, :decimal, :null => false, :default => 0.0
     add_column :work_records, :occasional_leave, :decimal, :null => false, :default => 0.0
+    add_column :work_records, :care_leave, :decimal, :null => false, :default => 0.0
     add_column :work_records, :sickness, :decimal, :null => false, :default => 0.0
     add_column :work_records, :nn, :decimal, :null => false, :default => 0.0
   end
