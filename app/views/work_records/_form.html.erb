@@ -1,15 +1,5 @@
 <%= form_for(@work_record) do |f| %>
-  <% if @work_record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@work_record.errors.count, "error") %> prohibited this work_record from being saved:</h2>
-
-      <ul>
-      <% @work_record.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "shared/error_messages", :target => @work_record %>
   <%= f.hidden_field :date %>
   <%= f.hidden_field :employee_id %>
   

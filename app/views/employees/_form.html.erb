@@ -1,16 +1,5 @@
 <%= form_for(@employee) do |f| %>
-  <% if @employee.errors.any? %>
-    <div id="error_explanation">
-      <h2>Nie można zapisać danych z powodu błędów (<%= @employee.errors.count %>):</h2>
-
-      <ul>
-      <% @employee.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
+  <%= render "shared/error_messages", :target => @employee %>
   <table>
     <tr>
       <td>Imię</td><td><%= f.text_field :first_name %></td>
