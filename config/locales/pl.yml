@@ -25,19 +25,18 @@ pl:
         less_than_or_equal_to: "{{attribute}}: must be less than or equal to {{count}}"     
         odd: "{{attribute}}: must be odd"
         even: "{{attribute}}: must be even"
-      models:
-        work_record:
-          attributes:
-            gr3: "Grupa 3"
-            gr4: Grupa 4
-            gr5: Grupa 5
-            gr6: Grupa 6
-            gr7: Grupa 7
-            gr8: Grupa 8
-            gr9: Grupa 9
-            other_work: Inna praca
-            cleaning: Sprzątanie
-            layover: Postój / Badania lekarskie
-            correction: Poprawki
-            all_work_time: Łączny czas przebywania w pracy
+    attributes:
+      work_record:
+        gr3: "Grupa 3"
+        gr4: Grupa 4
+        gr5: Grupa 5
+        gr6: Grupa 6
+        gr7: Grupa 7
+        gr8: Grupa 8
+        gr9: Grupa 9
+        other_work: Inna praca
+        cleaning: Sprzątanie
+        layover: Postój / Badania lekarskie
+        correction: Poprawki
+        all_work_time: Łączny czas przebywania w pracy
             
