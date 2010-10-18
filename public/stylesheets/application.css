@@ -137,6 +137,11 @@ table .smaller_font {
 }
 
 
+input[type='number'] {
+  /*border: solid 1px;*/
+  text-align: right;
+}
+
 /************** Errors **************/
 
 .field_with_errors {
@@ -174,8 +179,8 @@ select {
   width: 100%;
 }
 
-.narrow_text_field {
-  width: 50px;
+.narrow_field {
+  width: 60px;
 }
 
 .no_border_td {
