@@ -36,7 +36,7 @@ class WorkRecordsController < ApplicationController
     .select("SUM(correction) as correction_sum")
     .select("SUM(all_work_time) as all_work_time_sum")
     .select("SUM(breaks) as breaks_sum")
-    .select("*")
+    .select("work_records.id as work_record_id, *")
     .group(:employee_id).order("last_name ASC").find(:all, :joins => "LEFT JOIN employees ON employees.id = work_records.employee_id")
     
     #think of the above query to do it AREL style

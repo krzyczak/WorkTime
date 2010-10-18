@@ -7,7 +7,8 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body onload="window.print();">
+  <!--body onload="window.print();"-->
+  <body>
     <div id="container" class="transparent_class">
       <%- if show_title? -%>
         <h1><%=h yield(:title) %></h1>
