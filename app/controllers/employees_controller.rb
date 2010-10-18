@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(params[:employee])
 
     if @employee.save
-      redirect_to(@employee, :notice => t(:successfully_added_employee)
+      redirect_to(@employee, :notice => t(:successfully_added_employee))
     else
       @departments = Department.all
       render :action => "new"
@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(params[:employee])
-      redirect_to(@employee, :notice => t(:successfully_updated_employee)
+      redirect_to(@employee, :notice => t(:successfully_updated_employee))
     else
       @departments = Department.all
       render :action => "edit"

@@ -8,7 +8,10 @@
       <td>Nazwisko</td><td><%= f.text_field :last_name %></td>
     <tr>
     <tr>
-      <td>Wydział</td><td><%= f.select :department, options_for_select(@departments.collect {|d| [ d.name, d.id ] }) %></td>
+      <td>Wydział</td>
+      <td>
+        <%= f.select :department, options_for_select(@departments.collect {|d| [ d.name, d.id ] }, @employee.department_id) %>
+      </td>
     <tr>
     <tr>
       <td>&nbsp;</td><td align="right"><%= f.submit 'Zatwierdź' %></td>
