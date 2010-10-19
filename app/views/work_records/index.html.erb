@@ -45,7 +45,6 @@
         <td><b>Dla działu:</b></td><td><%= select_tag :department_id, options_for_select(Department.all.collect {|d| [d.name, d.id]}, params[:department_id]) %></td>
       </tr>
       <tr>
-        <!--td><b>Wyświetlić raport dla całego miesiąca?</b></td><td><%#= check_box_tag :report_monthly, true, :checked => 'checked' %><br/></td-->
           <td><b>Typ raportu:</b></td>
           <td>
             <%= radio_button :report, :monthly, "true", :checked => (params[:report][:monthly] == "true" ? 'checked' : 'no') %> Suma z całego miesiąca<br/>
@@ -70,7 +69,6 @@
 <br/>
 
 <% 
-#if params[:report_monthly] == "true"
 if params[:report][:monthly] == "true"
   msg = "Raport na miesiąc #{month_name(Date.parse(params[:report][:start_date]).month)} #{Date.parse(params[:report][:start_date]).year}, dla działu: #{Department.find(params[:department_id].to_i).name}"
 else
@@ -99,12 +97,10 @@ end
     <th class="small_font">Poprawki</th>
     <th class="small_font">Przerwy</th>
     <th class="small_font">Łączny czas<br/>przebywania<br/>w pracy</th>
-    <%# if params[:report_monthly] == "true" %>
     <% if params[:report][:monthly] == "true" %>
       <th class="small_font">Nadgodziny</th>
     <% else -%>
       <th class="dont_print"></th>
-      <!--th></th-->
     <% end -%>
   </tr>
   </thead>
@@ -118,7 +114,8 @@ end
 <% @work_records.each do |work_record| %>
   <tr class="small_font">
     <td><%= lp += 1 %></td>
-    <td style="text-align: left;"><%= "#{work_record.employee.last_name} #{work_record.employee.first_name}"%></td>
+    <td style="text-align: left;"><%= "#{work_record.employee.last_name} #{work_record.employee.first_name}"%>
+    </td>
     <td><%= work_record.gr3_sum %></td>
     <td><%= work_record.gr4_sum %></td>
     <td><%= work_record.gr5_sum %></td>
@@ -140,7 +137,6 @@ end
       <td class="dont_print">
         <%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record.work_record_id) %>
       </td>
-      <!--><td--><%#= link_to raw('<img src="/images/cancel.png" title="Usuń wpis">'), work_record, :confirm => 'Czy na pewno usunąć wpis?', :method => :delete %><!--></td-->
     <% end -%>
   </tr>
 <% end %>

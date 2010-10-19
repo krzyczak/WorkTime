@@ -11,85 +11,85 @@
   <table>
     <tr>
       <td>Grupa 3</td>
-      <td><%= f.number_field :gr3, :tabindex => "1", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr3, :min => 0, :tabindex => "1", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td colspan="2"><b>Przerwy obliczane są automatycznie</b></td>
     </tr>
     <tr>
       <td>Grupa 4</td>
-      <td><%= f.number_field :gr4, :tabindex => "2", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr4, :min => 0, :tabindex => "2", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Przerwy</td>
       <td><%= f.number_field :breaks, :readonly => :readonly, :value => "15.0", :tabindex => "13", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Grupa 5</td>
-      <td><%= f.number_field :gr5, :tabindex => "3", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr5, :min => 0, :tabindex => "3", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td colspan="2"><b>Dane do ewidencji miesięcznej</b></td>
     </tr>
     <tr>
       <td>Grupa 6</td>
-      <td><%= f.number_field :gr6, :tabindex => "4", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr6, :min => 0, :tabindex => "4", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Czas przepracowany ogółem</td>
       <td><%= number_field :work_time, :sum, :readonly => :readonly, :value => "480.0", :tabindex => "14", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Grupa 7</td>
-      <td><%= f.number_field :gr7, :tabindex => "5", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr7, :min => 0, :tabindex => "5", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>W tym</td>
       <td></td>
     </tr>
     <tr>
       <td>Grupa 8</td>
-      <td><%= f.number_field :gr8, :tabindex => "6", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr8, :min => 0, :tabindex => "6", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Nadgodziny z dopłatą 50%</td>
-      <td><%= f.number_field :overtime50, :tabindex => "15", :class => "narrow_field" %></td>
+      <td><%= f.number_field :overtime50, :min => 0, :tabindex => "15", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Grupa 9</td>
-      <td><%= f.number_field :gr9, :tabindex => "7", :class => "narrow_field" %></td>
+      <td><%= f.number_field :gr9, :min => 0, :tabindex => "7", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Nadgodziny z dopłatą 100%</td>
-      <td><%= f.number_field :overtime100, :tabindex => "16", :class => "narrow_field" %></td>
+      <td><%= f.number_field :overtime100, :min => 0, :tabindex => "16", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Inna praca</td>
-      <td><%= f.number_field :other_work, :tabindex => "8", :class => "narrow_field" %></td>
+      <td><%= f.number_field :other_work, :min => 0, :tabindex => "8", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Urlop wypoczynkowy</td>
-      <td><%= f.number_field :vacation_leave, :tabindex => "17", :class => "narrow_field" %></td>
+      <td><%= f.number_field :vacation_leave, :min => 0, :tabindex => "17", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Sprzątanie</td>
-      <td><%= f.number_field :cleaning, :tabindex => "9", :class => "narrow_field" %></td>
+      <td><%= f.number_field :cleaning, :min => 0, :tabindex => "9", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Urlop okolicznościowy</td>
-      <td><%= f.number_field :occasional_leave, :tabindex => "18", :class => "narrow_field" %></td>
+      <td><%= f.number_field :occasional_leave, :min => 0, :tabindex => "18", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Postój badania lekarskie</td>
-      <td><%= f.number_field :layover, :tabindex => "10", :class => "narrow_field" %></td>
+      <td><%= f.number_field :layover, :min => 0, :tabindex => "10", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Urlop opieka</td>
-      <td><%= f.number_field :care_leave, :tabindex => "18", :class => "narrow_field" %></td>
+      <td><%= f.number_field :care_leave, :min => 0, :tabindex => "18", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Poprawki</td>
-      <td><%= f.number_field :correction, :tabindex => "11", :class => "narrow_field" %></td>
+      <td><%= f.number_field :correction, :min => 0, :tabindex => "11", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>Choroba</td>
-      <td><%= f.number_field :sickness, :tabindex => "19", :class => "narrow_field" %></td>
+      <td><%= f.number_field :sickness, :min => 0, :tabindex => "19", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Łączny czas przebywania w pracy</td>
-      <td><%= f.number_field :all_work_time, :value => 465.0, :tabindex => "12", :class => "narrow_field" %></td>
+      <td><%= f.number_field :all_work_time, :min => 0, :value => 465.0, :tabindex => "12", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
       <td>NN</td>
-      <td><%= f.number_field :nn, :tabindex => "20", :class => "narrow_field" %></td>
+      <td><%= f.number_field :nn, :min => 0, :tabindex => "20", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td class="no_border_td"></td>
