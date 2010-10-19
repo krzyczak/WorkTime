@@ -60,6 +60,7 @@ class WorkRecordsController < ApplicationController
       wr.breaks_sum = BigDecimal.new(wr.breaks_sum)
     end
     
+    store_target_location
     provide_print_version_if_requested
   end
 
@@ -108,7 +109,8 @@ class WorkRecordsController < ApplicationController
     @work_record = WorkRecord.find(params[:id])
 
     if @work_record.update_attributes(params[:work_record])
-      redirect_to(@work_record, :notice => t(:successfully_updated_work_record))
+      #redirect_to(@work_record, :notice => t(:successfully_updated_work_record))
+      redirect_to_target_or_default(@work_record, :notice => t(:successfully_updated_work_record))
     else
       @submit_button_text = "Zatwierdź"
       render :action => "edit"
