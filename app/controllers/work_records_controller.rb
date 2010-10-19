@@ -152,24 +152,4 @@ class WorkRecordsController < ApplicationController
     work_records_done.each {|wr| employees_done.push wr.employee }
     return Employee.where(:department_id => session[:department_id]).all.select {|e| employees_done.include?(e) == false }
   end
-  
-  #def get_employees_for_report1(employees, last_employee_id)
-  #  #this method should be optimized in the future
-  #  employees.each do |e|
-  #    employees = employees.reverse
-  #    employees.pop
-  #    employees = employees.reverse
-  #    
-  #    if e.id == last_employee_id
-  #      return employees
-  #    end
-  #  end
-  #  employees
-  #end
-  #
-  #def next_employee_id
-  #  #this method should be optimized in the future
-  #  employees = Employee.where(:department_id => session[:department_id])
-  #  get_employees_for_report(employees, session[:employee_id]).first.id
-  #end
 end
