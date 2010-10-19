@@ -23,7 +23,7 @@ pl:
         taken: "{{attribute}}: has already been taken"
         not_a_number: "Pole {{attribute}} musi być liczbą w formacie 0.0"
         greater_than: "{{attribute}}: must be greater than {{count}}"
-        greater_than_or_equal_to: "Pole {{attribute}}: musi być większe lub równe {{count}}"
+        greater_than_or_equal_to: " - wartość musi być większa lub równa {{count}}"
         equal_to: "{{attribute}}: must be equal to {{count}}"
         less_than: "{{attribute}}: must be less than {{count}}"
         less_than_or_equal_to: "{{attribute}}: must be less than or equal to {{count}}"     
