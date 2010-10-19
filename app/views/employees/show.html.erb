@@ -1,4 +1,4 @@
-<% title('Szczegółowe dane pracownika') %>
+<%= title('Szczegółowe dane pracownika') %>
 
 <table class="show_employee">
   <tr>
@@ -33,5 +33,6 @@
 
 <div class="slick_button">
   <%= slick_button_raw('Edycja danych pracownika', edit_employee_path(@employee)) %>
-  <%= slick_button('Powrót do listy wszystkich pracowników', employees_path) %>
+  <%= slick_button_raw('Powrót do listy wszystkich pracowników', employees_path) %>
+  <%= slick_button('Dodaj nowego pracownika...', new_employee_path) %>
 </div>
