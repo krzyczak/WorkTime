@@ -1,7 +1,6 @@
 <% title('Dodawanie nowego wpisu') %>
 
 <table>
-<%#= form_tag new_report_path do %>
 <%= form_tag new_work_record_path, :method => 'get', :id => 'report_configuration_form' do -%>
   <tr>
     <td>Pracownik</td><td><%= select_tag :employee_id, options_for_select(@employees.collect {|e| [ "#{e.last_name} #{e.first_name}", e.id ] }, params[:employee_id]), :onchange => "submit();" %></td>
