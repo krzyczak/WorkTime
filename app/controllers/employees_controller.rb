@@ -7,6 +7,14 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
+    
+    #dump db data
+    #result1 = system("mysqldump -u root -p'w0j0wn!k' --skip-extended-insert worktime_development > work_time.html")
+    
+    #send email
+    #result2 = system("sendemail -f jkaczmarczyk@wwgroup.internetdsl.pl -t krzyczak@gmail.com -s mail.internetdsl.pl -xu jkaczmarczyk@wwgroup.internetdsl.pl -xp 2jkgr1957 -m Pozostało urlopu: #{@employee.remaining_vacation_leave} -a work_time.html")
+    #now we can tell user if the action was success and what to do because result is true if system command was succes and is false otherwise
+    #render "RESULT1: #{result1}\n\n RESULT2: #{result2}"
   end
 
   def new
