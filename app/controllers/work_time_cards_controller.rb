@@ -21,12 +21,16 @@ class WorkTimeCardsController < ApplicationController
       params[:report_year] = Date.today.year
     end
     
+    @work_recods = []
+    if @employee.nil? == false
+    
     @report_month = params[:report_month].to_i#(params[:report_month].nil? ? Date.today.month : params[:report_month].to_i)
     @report_year = params[:report_year].to_i#(params[:report_year].nil? ? Date.today.year : params[:report_year].to_i)
     
     start_date = Date.new(@report_year, @report_month, 1)
     end_date = Date.new(@report_year, @report_month, last_day(Date.new(@report_year, @report_month, -1)))
     @work_records = @employee.work_records.where("date >= ?", start_date).where("date <= ?", end_date)
+    #above won't work if we have no employees in db
     
     whole_month = []
     0.upto(30) {|i| whole_month.push(0)}
@@ -34,6 +38,9 @@ class WorkTimeCardsController < ApplicationController
       whole_month[wr.date.day-1] = wr
     end
     @work_recods = whole_month
+    
+    
+    end
     provide_print_version_if_requested
   end
   

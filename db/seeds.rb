@@ -12,7 +12,7 @@ Department.create(:name => "Szwalnia")
 Department.create(:name => "Rozkrój")
 
 
-=begin
+#=begin
 Employee.create(:last_name => 'Aleksandrowicz', :first_name => 'Elżbieta', :department_id => 1)
 Employee.create(:last_name => 'Bilik', :first_name => 'Irena', :department_id => 1)
 Employee.create(:last_name => 'Błaszków', :first_name => 'Edyta', :department_id => 1)
@@ -158,4 +158,4 @@ Employee.create(:last_name => 'Wojciuszkiewicz', :first_name => 'Jolanta', :depa
 Employee.create(:last_name => 'Wrona', :first_name => 'Anna', :department_id => 1)
 Employee.create(:last_name => 'Wysokińska', :first_name => 'Marlena', :department_id => 1)
 
-=end
+#=end

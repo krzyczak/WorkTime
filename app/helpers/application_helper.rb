@@ -6,9 +6,6 @@ module ApplicationHelper
   end
   
   def month_name(month_index)
-    puts "############################"
-    puts month_index
-    puts "############################"
     month_names = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień']
     month_names[month_index-1]
   end

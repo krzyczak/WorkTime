@@ -10,8 +10,6 @@ gem 'ruby-mysql'
 
 gem 'hirb'
 
-gem "pdfkit", ">=0.4.3"
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
