@@ -19,40 +19,40 @@ ActiveRecord::Schema.define(:version => 20101014112306) do
   end
 
   create_table "employees", :force => true do |t|
+    t.integer  "department_id"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "due_vacation_leave", :default => 26, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "department_id"
   end
 
   create_table "work_records", :force => true do |t|
     t.integer  "employee_id"
-    t.decimal  "gr3",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "gr4",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "gr5",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "gr6",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "gr7",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "gr8",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "gr9",              :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "other_work",       :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "cleaning",         :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "layover",          :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "correction",       :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "all_work_time",    :precision => 8, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "gr3",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "gr4",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "gr5",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "gr6",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "gr7",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "gr8",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "gr9",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "other_work",       :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cleaning",         :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "layover",          :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "correction",       :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "all_work_time",    :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "breaks",           :precision => 8, :scale => 2
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date"
     t.integer  "department_id"
-    t.decimal  "breaks",           :precision => 8, :scale => 4
-    t.decimal  "overtime50",       :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "overtime100",      :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "vacation_leave",   :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "occasional_leave", :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "care_leave",       :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "sickness",         :precision => 8, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "nn",               :precision => 8, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "overtime50",       :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "overtime100",      :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "vacation_leave",   :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "occasional_leave", :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "care_leave",       :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sickness",         :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "nn",               :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
 end
