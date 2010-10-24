@@ -116,23 +116,23 @@ end
     <td><%= lp += 1 %></td>
     <td style="text-align: left;"><%= "#{work_record.employee.last_name} #{work_record.employee.first_name}"%>
     </td>
-    <td><%= work_record.gr3_sum %></td>
-    <td><%= work_record.gr4_sum %></td>
-    <td><%= work_record.gr5_sum %></td>
-    <td><%= work_record.gr6_sum %></td>
-    <td><%= work_record.gr7_sum %></td>
-    <td><%= work_record.gr8_sum %></td>
-    <td><%= work_record.gr9_sum %></td>
+    <td><%= work_record.gr3 %></td>
+    <td><%= work_record.gr4 %></td>
+    <td><%= work_record.gr5 %></td>
+    <td><%= work_record.gr6 %></td>
+    <td><%= work_record.gr7 %></td>
+    <td><%= work_record.gr8 %></td>
+    <td><%= work_record.gr9 %></td>
     <td><%= work_record.accord_all_groups %></td>
-    <td><%= work_record.productivity_sum %></td>
-    <td><%= work_record.other_work_sum %></td>
-    <td><%= work_record.cleaning_sum %></td>
-    <td><%= work_record.layover_sum %></td>
-    <td><%= work_record.correction_sum %></td>
-    <td><%= work_record.breaks_sum %></td>
-    <td><%= work_record.all_work_time_sum %></td>
+    <td><%= work_record.productivity %></td>
+    <td><%= work_record.other_work %></td>
+    <td><%= work_record.cleaning %></td>
+    <td><%= work_record.layover %></td>
+    <td><%= work_record.correction %></td>
+    <td><%= work_record.breaks %></td>
+    <td><%= work_record.all_work_time %></td>
     <% if params[:report][:monthly] == "true" %>
-      <td><%= work_record.all_work_time_sum-((work_record.breaks_sum/15)*465) %></td>
+      <td><%= work_record.all_work_time-((work_record.breaks/15)*465) %></td>
     <% else -%>
       <td class="dont_print">
         <%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record.work_record_id) %>
