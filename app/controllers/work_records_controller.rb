@@ -23,42 +23,23 @@ class WorkRecordsController < ApplicationController
     
     @work_records = WorkRecord
     .select("work_records.*")
-    .select("SUM(gr3) as gr3_sum")
-    .select("SUM(gr4) as gr4_sum")
-    .select("SUM(gr5) as gr5_sum")
-    .select("SUM(gr6) as gr6_sum")
-    .select("SUM(gr7) as gr7_sum")
-    .select("SUM(gr8) as gr8_sum")
-    .select("SUM(gr9) as gr9_sum")
-    .select("SUM(other_work) as other_work_sum")
-    .select("SUM(cleaning) as cleaning_sum")
-    .select("SUM(layover) as layover_sum")
-    .select("SUM(correction) as correction_sum")
-    .select("SUM(all_work_time) as all_work_time_sum")
-    .select("SUM(breaks) as breaks_sum")
+    .select("SUM(gr3) as gr3")
+    .select("SUM(gr4) as gr4")
+    .select("SUM(gr5) as gr5")
+    .select("SUM(gr6) as gr6")
+    .select("SUM(gr7) as gr7")
+    .select("SUM(gr8) as gr8")
+    .select("SUM(gr9) as gr9")
+    .select("SUM(other_work) as other_work")
+    .select("SUM(cleaning) as cleaning")
+    .select("SUM(layover) as layover")
+    .select("SUM(correction) as correction")
+    .select("SUM(all_work_time) as all_work_time")
+    .select("SUM(breaks) as breaks")
     .select("work_records.id as work_record_id")
     .joins('LEFT JOIN employees ON employees.id = work_records.employee_id')
     .where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     .group(:employee_id).order("last_name ASC")
-    
-    #the code below needs to be commented out if DB system SUM() functions returns numbers instead of String
-    #e.g. SQLite works that way
-    @work_records.each do |wr|
-      wr.gr3_sum = BigDecimal.new(wr.gr3_sum)
-      wr.gr4_sum = BigDecimal.new(wr.gr4_sum)
-      wr.gr5_sum = BigDecimal.new(wr.gr5_sum)
-      wr.gr6_sum = BigDecimal.new(wr.gr6_sum)
-      wr.gr7_sum = BigDecimal.new(wr.gr7_sum)
-      wr.gr8_sum = BigDecimal.new(wr.gr8_sum)
-      wr.gr9_sum = BigDecimal.new(wr.gr9_sum)
-      
-      wr.other_work_sum = BigDecimal.new(wr.other_work_sum)
-      wr.cleaning_sum = BigDecimal.new(wr.cleaning_sum)
-      wr.layover_sum = BigDecimal.new(wr.layover_sum)
-      wr.correction_sum = BigDecimal.new(wr.correction_sum)
-      wr.all_work_time_sum = BigDecimal.new(wr.all_work_time_sum)
-      wr.breaks_sum = BigDecimal.new(wr.breaks_sum)
-    end
     
     store_target_location
     provide_print_version_if_requested
