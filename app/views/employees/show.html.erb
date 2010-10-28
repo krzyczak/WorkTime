@@ -18,15 +18,33 @@
 <div id="leave_data">
   <table class="show_employee">
     <thead>
-      <tr><th colspan="2">Dane urlopów</th></tr>
+      <tr><th colspan="3">Dane urlopów</th></tr>
     </thead>
     <tr>
-      <td>Urlop wypoczynkowy należny</td>
+      <td colspan="3">Urlop wypoczynkowy</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>należny</td>
       <td><%= @employee.due_vacation_leave %> dni</td>
     </tr>
     <tr>
-      <td>Urlop wypoczynkowy pozostały do wykorzystania</td>
+      <td>&nbsp;</td>
+      <td>pozostały do wykorzystania</td>
       <td><%= @employee.remaining_vacation_leave %> dni</td>
+    </tr>
+    <tr>
+      <td colspan="3">Urlop opiekuńczy</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>należny</td>
+      <td><%= @employee.due_care_leave %> dni</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>pozostały do wykorzystania</td>
+      <td><%= @employee.remaining_care_leave %> dni</td>
     </tr>
   </table>
 </div>
