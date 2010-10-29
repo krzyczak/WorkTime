@@ -9,11 +9,6 @@ class WorkRecord < ActiveRecord::Base
     :overtime50, :overtime100, :vacation_leave, :occasional_leave, :sickness, :nn,
     :greater_than_or_equal_to => 0
   
-  #validates :gr3, :gr4, :gr5, :gr6, :gr7, :gr8, :gr9, :other_work, :cleaning, :layover, :correction, :all_work_time,
-  #  :numericality => true,
-  #  :presence => true,
-  #  :greater_than_or_equal_to => 0
-  
   def accord_all_groups
     gr3+gr4+gr5+gr6+gr7+gr8+gr9
   end
@@ -30,10 +25,5 @@ class WorkRecord < ActiveRecord::Base
   
   def calculate_breaks
     all_work_time > 360 ? 15 : 0
-    #if all_work_time > 360
-    #  breaks = 15
-    #else
-    #  breaks = 0
-    #end
   end
 end
