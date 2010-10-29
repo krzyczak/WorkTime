@@ -24,11 +24,15 @@
     </tr>
 
     <thead>
-      <tr><th colspan="2">Dane dotyczące urlopu</th></tr>
+      <tr><th colspan="2">Dane dotyczące urlopów</th></tr>
     </thead>
     <tr>
       <td>Urlop wypoczynkowy należny (w dniach)</td>
-      <td><%= f.number_field :due_vacation_leave %></td>
+      <td><%= f.number_field :due_vacation_leave, :min => 0 %></td>
+    </tr>
+    <tr>
+      <td>Urlop opiekuńczy należny (w dniach)</td>
+      <td><%= f.number_field :due_care_leave, :min => 0 %></td>
     </tr>
     <tr>
       <td class="no_border_td">&nbsp;</td>

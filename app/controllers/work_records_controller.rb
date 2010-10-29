@@ -65,11 +65,13 @@ class WorkRecordsController < ApplicationController
   def edit
     @work_record = WorkRecord.find(params[:id])
     @submit_button_text = "Zatwierdź"
+    session[:return_to] = request.referer
   end
 
   def create
     @work_record = WorkRecord.new(params[:work_record])
     @work_record.department = Department.find(session[:department_id])
+    @work_record.breaks = @work_record.calculate_breaks
 
     if @work_record.save
       done_count = (WorkRecord.where(:department_id => session[:department_id]).where(:date => session[:report_date])).count
@@ -88,6 +90,7 @@ class WorkRecordsController < ApplicationController
 
   def update
     @work_record = WorkRecord.find(params[:id])
+    @work_record.breaks = @work_record.calculate_breaks
 
     if @work_record.update_attributes(params[:work_record])
       #redirect_to(@work_record, :notice => t(:successfully_updated_work_record))
