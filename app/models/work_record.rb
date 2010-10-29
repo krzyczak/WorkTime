@@ -27,4 +27,13 @@ class WorkRecord < ActiveRecord::Base
     end
     "#{(ret*100).round(2)} %"
   end
+  
+  def calculate_breaks
+    all_work_time > 360 ? 15 : 0
+    #if all_work_time > 360
+    #  breaks = 15
+    #else
+    #  breaks = 0
+    #end
+  end
 end
