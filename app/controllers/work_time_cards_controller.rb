@@ -2,7 +2,7 @@
 
 class WorkTimeCardsController < ApplicationController
   def index
-    @employees = Employee.all
+    @employees = Employee.order('department_id ASC').order('last_name ASC').order('first_name ASC').all
     provide_meta_data
     provide_print_version_if_requested
   end
