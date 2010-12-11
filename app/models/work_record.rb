@@ -14,13 +14,7 @@ class WorkRecord < ActiveRecord::Base
   end
   
   def productivity
-    ret = 0
-    if all_work_time > 0
-      ret = accord_all_groups/(all_work_time-other_work-cleaning-layover-correction)
-    else
-      ret = 0
-    end
-    "#{(ret*100).round(2)} %"
+    all_work_time > 0 ? ( accord_all_groups/(all_work_time-other_work-cleaning-layover-correction) ) : 0.0
   end
   
   def calculate_breaks

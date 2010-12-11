@@ -41,6 +41,10 @@ class WorkRecordsController < ApplicationController
     .where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     .group(:employee_id).order("last_name ASC")
     
+    @accord_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.accord_all_groups }
+    @all_work_time_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.all_work_time }
+    @productivity_sum = @accord_sum/@all_work_time_sum
+    
     store_target_location
     provide_print_version_if_requested
   end
