@@ -10,6 +10,14 @@ gem 'ruby-mysql'
 
 gem 'hirb'
 
+gem 'daemons', '>=1.0.10'
+gem 'eventmachine', '>=0.12.10'
+gem 'thin', '>=1.2.7'
+
+#eventmachine-0.12.10
+#Successfully installed thin-1.2.7
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
