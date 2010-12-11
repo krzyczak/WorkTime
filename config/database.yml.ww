@@ -1,0 +1,18 @@
+defaults: &defaults
+  adapter: mysql
+  host: 127.0.0.1
+  encoding: utf8
+  username: root
+  password: w0j0wn!k
+
+development:
+  database: worktime_development
+  <<: *defaults
+
+test:
+  database: worktime_test 
+  <<: *defaults
+
+production:
+  database: worktime_production
+  <<: *defaults
