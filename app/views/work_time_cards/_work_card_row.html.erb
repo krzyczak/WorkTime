@@ -3,7 +3,7 @@
   <% if work_record == 0 %>
     <td>&nbsp;</td>
   <% else -%>
-    <td><%= ((work_record.send(value_to_calculate.to_sym)).to_f/60).round(2) %></td>
+    <td><%= ((work_record.send(value_to_calculate.to_sym)).to_f/60).round(2) unless work_record.send(value_to_calculate.to_sym).to_f <= 0.0 %></td>
     <% sum += ((work_record.send(value_to_calculate.to_sym)).to_f/60).round(2) %>
   <% end -%>
 <% end -%>

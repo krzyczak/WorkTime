@@ -1,9 +1,9 @@
 defaults: &defaults
   adapter: mysql
-  host: 127.0.0.1
   encoding: utf8
   username: root
   password: w0j0wn!k
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   database: worktime_development
