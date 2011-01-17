@@ -97,7 +97,6 @@ class WorkRecordsController < ApplicationController
     @work_record.breaks = @work_record.calculate_breaks
 
     if @work_record.update_attributes(params[:work_record])
-      #redirect_to(@work_record, :notice => t(:successfully_updated_work_record))
       redirect_to_target_or_default(@work_record, :notice => t(:successfully_updated_work_record))
     else
       @submit_button_text = "Zatwierdź"
