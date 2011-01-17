@@ -10,11 +10,6 @@ class WorkRecord < ActiveRecord::Base
     :greater_than_or_equal_to => 0
     
   validates_uniqueness_of :employee_id, :scope => [:date]
-  #validate :unique_record, :on => :create
-  
-  #def unique_record
-  #  errors.add_to_base("Dla tego pracownika w danym dniu, dane są już wprowadzone...\nProszę wybrać innego pracownika.") if WorkRecord.where("employee_id = ? AND date = ?", employee_id, date).count > 0
-  #end
   
   def accord_all_groups
     gr3+gr4+gr5+gr6+gr7+gr8+gr9
