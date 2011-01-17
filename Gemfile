@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,9 +10,9 @@ gem 'ruby-mysql'
 
 gem 'hirb'
 
-gem 'daemons', '>=1.0.10'
-gem 'eventmachine', '>=0.12.10'
-gem 'thin', '>=1.2.7'
+#gem 'daemons', '>=1.0.10'
+#gem 'eventmachine', '>=0.12.10'
+#gem 'thin', '>=1.2.7'
 
 #eventmachine-0.12.10
 #Successfully installed thin-1.2.7
@@ -37,6 +37,7 @@ gem 'thin', '>=1.2.7'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'rspec'
-  gem "rspec-rails", ">= 2.0.1"
+  gem 'rspec', ">=2.4.0"
+  gem 'rspec-core', ">=2.4.0"
+  gem "rspec-rails", ">=2.4.0"
 end
