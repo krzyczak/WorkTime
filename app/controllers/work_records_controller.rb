@@ -49,7 +49,7 @@ class WorkRecordsController < ApplicationController
     @layover_sum    = @work_records.inject(0.0) {|sum, wr| sum += wr.layover }
     @correction_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.correction }
     
-    #### end of added code
+    ###### end of added code
     
     @accord_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.accord_all_groups }
     @all_work_time_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.all_work_time }
