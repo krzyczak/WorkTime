@@ -105,16 +105,6 @@ end
   </tr>
   </thead>
   <tfoot>
-    <tr class="small_font">
-      <td colspan="7"></td>
-      <td colspan="2"><b>SUMA Akord:</b></td>
-      <td><%= @accord_sum.round(2) %></td>
-      <td><%= nice_procent_display(@productivity_sum) %></td>
-      <td colspan="3"></td>
-      <td colspan="2"><b>Suma czas pracy:</b></td>
-      <td colspan="1"><%= @all_work_time_sum %></td>
-      <td></td>
-    </tr>
     <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
   </tfoot>
   
@@ -150,5 +140,15 @@ end
     <% end -%>
   </tr>
 <% end %>
+    <tr class="small_font">
+      <td colspan="7"></td>
+      <td colspan="2"><b>SUMA Akord:</b></td>
+      <td><%= @accord_sum.round(2) %></td>
+      <td><%= nice_procent_display(@productivity_sum) %></td>
+      <td colspan="3"></td>
+      <td colspan="2"><b>Suma czas pracy:</b></td>
+      <td colspan="1"><%= @all_work_time_sum %></td>
+      <td></td>
+    </tr>
   </tbody>
 </table>

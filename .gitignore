@@ -5,3 +5,5 @@ tmp/**/*
 Gemfile
 Gemfile.lock
 config/database.yml
+work_time_start.bat
+zzz-old-config.txt
