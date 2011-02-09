@@ -145,10 +145,14 @@ end
       <td colspan="2"><b>SUMA Akord:</b></td>
       <td><%= @accord_sum.round(2) %></td>
       <td><%= nice_procent_display(@productivity_sum) %></td>
-      <td colspan="3"></td>
-      <td colspan="2"><b>Suma czas pracy:</b></td>
+      <td><%= @other_work_sum %></td>
+      <td><%= @cleaning_sum %></td>
+      <td><%= @layover_sum %></td>
+      <td><%= @correction_sum %></td>
+      <td colspan="1"><b>Suma czas pracy:</b></td>
       <td colspan="1"><%= @all_work_time_sum %></td>
       <td></td>
     </tr>
   </tbody>
 </table>
+

@@ -41,9 +41,20 @@ class WorkRecordsController < ApplicationController
     .where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     .group(:employee_id).order("last_name ASC")
     
+    ###### added code
+    
+    #all_work_time > 0 ? ( accord_all_groups/(all_work_time-other_work-cleaning-layover-correction) ) : 0.0
+    @other_work_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.other_work }
+    @cleaning_sum   = @work_records.inject(0.0) {|sum, wr| sum += wr.cleaning }
+    @layover_sum    = @work_records.inject(0.0) {|sum, wr| sum += wr.layover }
+    @correction_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.correction }
+    
+    #### end of added code
+    
     @accord_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.accord_all_groups }
     @all_work_time_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.all_work_time }
-    @productivity_sum = @all_work_time_sum > 0 ? @accord_sum/@all_work_time_sum : 0.0
+    #@productivity_sum = @all_work_time_sum > 0 ? @accord_sum/@all_work_time_sum : 0.0
+    @productivity_sum = @all_work_time_sum > 0 ? @accord_sum/(@all_work_time_sum-@other_work_sum-@cleaning_sum-@layover_sum-@correction_sum) : 0.0
     
     store_target_location
     provide_print_version_if_requested
