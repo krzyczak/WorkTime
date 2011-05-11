@@ -50,6 +50,18 @@
     <% end -%>
     <td><%= sum %></td>
   </tr>
+  <%#################################################################3%>
+  <tr class="smaller_font">
+    <td>&nbsp;</td>
+    <td style="font-size: 8pt;">w niedziele i święta</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "sunday_time"} %>
+  </tr>
+  <tr class="smaller_font">
+    <td>&nbsp;</td>
+    <td style="font-size: 8pt;">w porze nocnej</td>
+    <%= render :partial => 'work_card_row', :locals => {:value_to_calculate => "night_time"} %>
+  </tr>
+  <%#################################################################3%>
   <tr class="smaller_font">
     <td>&nbsp;</td>
     <td style="font-size: 8pt;">nadgodz. 50%</td>

@@ -92,12 +92,28 @@
       <td><%= f.number_field :nn, :min => 0, :tabindex => "20", :class => "narrow_field" %></td>
     </tr>
     <tr>
+    <%#####################################################3%>
+    <tr>
+      <td class="no_border_td">&nbsp;</td>
+      <td class="no_border_td">&nbsp;</td>
+      <td class="no_border_td">&nbsp;</td>
+      <td>W niedziele i święta</td>
+      <td><%= f.number_field :sunday_time, :min => 0, :tabindex => "21", :class => "narrow_field" %></td>
+    </tr>
+    <tr>
+      <td class="no_border_td">&nbsp;</td>
+      <td class="no_border_td">&nbsp;</td>
+      <td class="no_border_td">&nbsp;</td>
+      <td>W niedziele i święta</td>
+      <td><%= f.number_field :night_time, :min => 0, :tabindex => "22", :class => "narrow_field" %></td>
+    </tr>
+    <%#####################################################3%>
       <td class="no_border_td"></td>
       <td class="no_border_td"></td>
       <td class="no_border_td"></td>
       <td class="no_border_td" colspan="2" style="text-align: right;">
-        <%= f.submit "#{@submit_button_text}", :style => "width: 70%", :tabindex => "21" %> <%= link_to 'Anuluj',
-          work_records_path, :tabindex => "22" %>
+        <%= f.submit "#{@submit_button_text}", :style => "width: 70%", :tabindex => "23" %> <%= link_to 'Anuluj',
+          work_records_path, :tabindex => "24" %>
       </td>
     </tr>
   </table>

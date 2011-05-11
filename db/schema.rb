@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028122001) do
+ActiveRecord::Schema.define(:version => 20110511195521) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20101028122001) do
     t.decimal  "care_leave",       :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.decimal  "sickness",         :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.decimal  "nn",               :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "sunday_time",      :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "night_time",       :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
 end
