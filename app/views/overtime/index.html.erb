@@ -1,0 +1,40 @@
+<% title 'Suma nadgodzin' %>
+
+<div style="width: 30%;" class="dont_print">
+  <%= form_tag overtime_path, :method => 'get', :id => 'report_configuration_form' do -%>
+    <b>Zmień rok:</b><%= select_tag :year, options_for_select(@years, (params[:year] || @current_year)), :onchange => "submit();" %>
+  <% end -%>
+</div>
+
+<%= slick_button('Wersja do druku', :print => true, :year => (params[:year] || @current_year)) %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Lp.</th>
+    <th>Pracownik</th>
+    <th>Nadgodziny  50%</th>
+    <th>Nadgodziny 100%</th>
+  </tr>
+  </thead>
+  <tfoot>
+    <% msg = "Suma nadgodzin pracowników od dnia #{@start_date} do dnia #{@end_date}" %>
+    <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
+  </tfoot>
+  
+  <tbody>
+
+<% lp = 0 %>
+<% @work_records.each do |work_record| %>
+  <tr>
+    <td style="text-align: right"><%= lp += 1 %></td>
+    <td style="text-align: left;">
+      <%= link_to "#{work_record.employee.last_name} #{work_record.employee.first_name}", employee_path(work_record.employee) %>
+    </td>
+    <td style="text-align: right"><%= sprintf("%.1f", (work_record.overtime50/60)) %></td>
+    <td style="text-align: right"><%= sprintf("%.1f", (work_record.overtime100/60)) %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+

@@ -22,6 +22,9 @@
             <li class="<%= controller.controller_path == 'work_time_cards' ? 'selected' : '' %>">
               <%= link_to 'Miesięczna ewidencja czasu pracy', work_time_cards_path %>
             </li>
+            <li class="<%= controller.controller_path == 'overtime' ? 'selected' : '' %>">
+              <%= link_to 'Suma nadgodzin', overtime_path %>
+            </li>
           </ul>
         </div>
       </div>
