@@ -41,6 +41,34 @@ class WorkRecordsController < ApplicationController
     .where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     .group(:employee_id).order("last_name ASC")
     
+    @grx = WorkRecord.where("date >= ?", start_date).where("date <= ?", end_date)
+    
+    #@gr3_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr3 }
+    #@gr4_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr4 }
+    #@gr5_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr5 }
+    #@gr6_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr6 }
+    #@gr7_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr7 }
+    #@gr8_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr8 }
+    #@gr9_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr9 }
+    
+    @gr3_sum = BigDecimal.new('0.0')
+    @gr4_sum = BigDecimal.new('0.0')
+    @gr5_sum = BigDecimal.new('0.0')
+    @gr6_sum = BigDecimal.new('0.0')
+    @gr7_sum = BigDecimal.new('0.0')
+    @gr8_sum = BigDecimal.new('0.0')
+    @gr9_sum = BigDecimal.new('0.0')
+    
+    @grx.each do |wr|
+      @gr3_sum += wr.gr3
+      @gr4_sum += wr.gr4
+      @gr5_sum += wr.gr5
+      @gr6_sum += wr.gr6
+      @gr7_sum += wr.gr7
+      @gr8_sum += wr.gr8
+      @gr9_sum += wr.gr9
+    end
+    
     ## added code
     
     #all_work_time > 0 ? ( accord_all_groups/(all_work_time-other_work-cleaning-layover-correction) ) : 0.0
@@ -48,6 +76,7 @@ class WorkRecordsController < ApplicationController
     @cleaning_sum   = @work_records.inject(0.0) {|sum, wr| sum += wr.cleaning }
     @layover_sum    = @work_records.inject(0.0) {|sum, wr| sum += wr.layover }
     @correction_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.correction }
+    @breaks_sum     = @work_records.inject(0.0) {|sum, wr| sum += wr.breaks }
     
     ## end of added code
     
