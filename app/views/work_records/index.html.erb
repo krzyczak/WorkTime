@@ -105,6 +105,31 @@ end
   </tr>
   </thead>
   <tfoot>
+    <tr>
+      <th class="small_font">Lp.</th>
+      <th class="small_font">Pracownik</th>
+      <th class="small_font">Gr3</th>
+      <th class="small_font">Gr4</th>
+      <th class="small_font">Gr5</th>
+      <th class="small_font">Gr6</th>
+      <th class="small_font">Gr7</th>
+      <th class="small_font">Gr8</th>
+      <th class="small_font">Gr9</th>
+      <th class="small_font">Razem akord</th>
+      <th class="small_font">Wydajność</th>
+      <th class="small_font">Inna praca</th>
+      <th class="small_font">Sprzątanie</th>
+      <th class="small_font">Postój / bad. lek.</th>
+      <th class="small_font">Poprawki</th>
+      <th class="small_font">Przerwy</th>
+      <th class="small_font">Łącznie</th>
+      <% if params[:report][:monthly] == "true" %>
+        <th class="small_font">Nadgodziny</th>
+      <% else -%>
+        <th class="dont_print"></th>
+      <% end -%>
+    </tr>
+    <tr><td colspan="18"><sub>Poszczególne procenty w grupach odnoszą się do Razem Akord</sub></td></tr>
     <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
   </tfoot>
   
@@ -144,13 +169,13 @@ end
       <td colspan="2"><b>SUMA Akord:</b></td>
       
       <!--td colspan="7"></td-->
-      <td><%= @gr3_sum > 0 ? (100.0 * @gr3_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
-      <td><%= @gr4_sum > 0 ? (100.0 * @gr4_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
-      <td><%= @gr5_sum > 0 ? (100.0 * @gr5_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
-      <td><%= @gr6_sum > 0 ? (100.0 * @gr6_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
-      <td><%= @gr7_sum > 0 ? (100.0 * @gr7_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
-      <td><%= @gr8_sum > 0 ? (100.0 * @gr8_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
-      <td><%= @gr9_sum > 0 ? (100.0 * @gr9_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr3_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr4_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr5_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr6_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr7_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr8_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
+      <td><%= @accord_sum > 0 ? (100.0 * @gr9_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
       
       <td><%= @accord_sum.round(2) %></td>
       <td><%= nice_procent_display(@productivity_sum) %></td>
