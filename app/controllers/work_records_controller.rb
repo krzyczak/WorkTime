@@ -41,7 +41,7 @@ class WorkRecordsController < ApplicationController
     .where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     .group(:employee_id).order("last_name ASC")
     
-    @grx = WorkRecord.where("date >= ?", start_date).where("date <= ?", end_date)
+    @grx = WorkRecord.where(:department_id => department_id).where("date >= ?", start_date).where("date <= ?", end_date)
     
     #@gr3_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr3 }
     #@gr4_sum = @grx.inject(0.0) {|sum, wr| sum += wr.gr4 }

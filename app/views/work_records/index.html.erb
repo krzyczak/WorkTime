@@ -104,34 +104,6 @@ end
     <% end -%>
   </tr>
   </thead>
-  <tfoot>
-    <tr>
-      <th class="small_font">Lp.</th>
-      <th class="small_font">Pracownik</th>
-      <th class="small_font">Gr3</th>
-      <th class="small_font">Gr4</th>
-      <th class="small_font">Gr5</th>
-      <th class="small_font">Gr6</th>
-      <th class="small_font">Gr7</th>
-      <th class="small_font">Gr8</th>
-      <th class="small_font">Gr9</th>
-      <th class="small_font">Razem akord</th>
-      <th class="small_font">Wydajność</th>
-      <th class="small_font">Inna praca</th>
-      <th class="small_font">Sprzątanie</th>
-      <th class="small_font">Postój / bad. lek.</th>
-      <th class="small_font">Poprawki</th>
-      <th class="small_font">Przerwy</th>
-      <th class="small_font">Łącznie</th>
-      <% if params[:report][:monthly] == "true" %>
-        <th class="small_font">Nadgodziny</th>
-      <% else -%>
-        <th class="dont_print"></th>
-      <% end -%>
-    </tr>
-    <tr><td colspan="18"><sub>Poszczególne procenty w grupach odnoszą się do Razem Akord</sub></td></tr>
-    <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
-  </tfoot>
   
   <tbody>
 
@@ -166,7 +138,7 @@ end
   </tr>
 <% end %>
     <tr class="small_font">
-      <td colspan="2"><b>SUMA Akord:</b></td>
+      <td colspan="2"><b>SUMA:</b></td>
       
       <!--td colspan="7"></td-->
       <td><%= @accord_sum > 0 ? (100.0 * @gr3_sum / @accord_sum).to_f.round(1) : 0.0 %> %</td>
@@ -187,6 +159,32 @@ end
       <td colspan="1"><%= @all_work_time_sum %></td>
       <td></td>
     </tr>
+    <tr>
+      <th class="small_font">Lp.</th>
+      <th class="small_font">Pracownik</th>
+      <th class="small_font">Gr3</th>
+      <th class="small_font">Gr4</th>
+      <th class="small_font">Gr5</th>
+      <th class="small_font">Gr6</th>
+      <th class="small_font">Gr7</th>
+      <th class="small_font">Gr8</th>
+      <th class="small_font">Gr9</th>
+      <th class="small_font">Razem akord</th>
+      <th class="small_font">Wydajność</th>
+      <th class="small_font">Inna praca</th>
+      <th class="small_font">Sprzątanie</th>
+      <th class="small_font">Postój / bad. lek.</th>
+      <th class="small_font">Poprawki</th>
+      <th class="small_font">Przerwy</th>
+      <th class="small_font">Łącznie</th>
+      <% if params[:report][:monthly] == "true" %>
+        <th class="small_font"></th>
+      <% else -%>
+        <th class="dont_print"></th>
+      <% end -%>
+    </tr>
+    <tr><td colspan="18"><sub>Poszczególne procenty w grupach odnoszą się do Razem Akord</sub></td></tr>
+    <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
   </tbody>
 </table>
 
