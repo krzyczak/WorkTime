@@ -1,5 +1,6 @@
 WorkTime::Application.routes.draw do
   match 'overtime' => "overtime#index", :as => 'overtime', :via => :get
+  match 'by_person' => "overtime#show", :as => 'by_person', :via => :get
 
   match 'report_cofiguration' => 'work_records#configure_report', :as => 'report_cofiguration', :via => :get
   match 'new_report' => 'work_records#create_report_configuration', :as => 'new_report', :via => :post

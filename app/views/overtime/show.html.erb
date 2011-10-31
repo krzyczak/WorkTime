@@ -1,0 +1,87 @@
+<% title 'Raport godzin pracownika' %>
+<% javascript 'jquery-ui-1.8.5.custom.min', 'jquery.qtip-1.0.0-rc3.min' %>
+
+<div style="width: 30%;" class="dont_print">
+  <table>
+  <%= form_tag by_person_path, :method => 'get' do -%>
+    <tr>
+      <td>Pracownik</td><td><%= select_tag :employee_id, options_for_select(@employees.collect {|e| [ "#{e.last_name} #{e.first_name}", e.id ] }, params[:employee_id]), :onchange => "submit();" %></td>
+    </tr>
+    <tr>
+      <td>Miesiąc</td><td><%= select_tag :month, options_for_select(1.upto(12).collect {|m| [ "#{@month_names[m-1]}", m ] }, params[:month] || @month), :onchange => "submit();" %></td>
+    </tr>
+    <tr>
+      <td>Rok</td><td><%= select_tag :year, options_for_select(@years, (params[:year] || @year)), :onchange => "submit();" %></td>
+    </tr>
+    <noscript>
+    <tr>
+      <td>&nbsp;</td><td><%= submit_tag 'OK' %></td>
+    </tr>
+    </noscript>
+  <% end %>
+  </table>
+</div>
+
+<%= slick_button('Wersja do druku', :print => true, :year => (params[:year] || @year), :month => (params[:month] || @month), :employee_id => (params[:employee_id])) %>
+
+<table style="font-size: 9pt;">
+  <thead>
+  <tr>
+    <td colspan="7"><%= @employee_name %></td>
+  </tr>
+  <tr>
+    <th style="width: 65px;">Data</th>
+    <th style="width: 65px;">Gr 3</th>
+    <th style="width: 65px;">Gr 4</th>
+    <th style="width: 65px;">Gr 5</th>
+    <th style="width: 65px;">Gr 6</th>
+    <th style="width: 65px;">Gr 7</th>
+    <th style="width: 65px;">Gr 8</th>
+    <th style="width: 65px;">Gr 9</th>
+  </tr>
+  </thead>
+  <tfoot>
+    <% msg = "Raport godzin pracownika za #{@month_names[@month-1]} #{@year}" %>
+    <tr><td colspan="18"><sub><%= msg %></sub></td></tr>
+  </tfoot>
+  
+  <tbody>
+
+<% @work_records.each do |k, work_record| %>
+  <tr>
+  <% if work_record.class == WorkRecord %>
+    <th><%= work_record.date %></th>
+    <th><%= work_record.gr3 %></th>
+    <th><%= work_record.gr4 %></th>
+    <th><%= work_record.gr5 %></th>
+    <th><%= work_record.gr6 %></th>
+    <th><%= work_record.gr7 %></th>
+    <th><%= work_record.gr8 %></th>
+    <th><%= work_record.gr9 %></th>
+  <% else %>
+    <th><%= k %></th>
+    <th><%= 0.0 %></th>
+    <th><%= 0.0 %></th>
+    <th><%= 0.0 %></th>
+    <th><%= 0.0 %></th>
+    <th><%= 0.0 %></th>
+    <th><%= 0.0 %></th>
+    <th><%= 0.0 %></th>
+  <% end %>
+  </tr>
+<% end %>
+<% @sum.each do |sum| %>
+  <tr>
+    <th><%= "SUMA" %></th>
+    <th><%= sum.gr3 %></th>
+    <th><%= sum.gr4 %></th>
+    <th><%= sum.gr5 %></th>
+    <th><%= sum.gr6 %></th>
+    <th><%= sum.gr7 %></th>
+    <th><%= sum.gr8 %></th>
+    <th><%= sum.gr9 %></th>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+

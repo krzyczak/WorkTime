@@ -22,12 +22,16 @@
             <li class="<%= controller.controller_path == 'work_time_cards' ? 'selected' : '' %>">
               <%= link_to 'Miesięczna ewidencja czasu pracy', work_time_cards_path %>
             </li>
-            <li class="<%= controller.controller_path == 'overtime' ? 'selected' : '' %>">
+            <li class="<%= request.path == '/overtime' ? 'selected' : '' %>">
               <%= link_to 'Suma nadgodzin', overtime_path %>
+            </li>
+            <li class="<%= request.path == '/by_person' ? 'selected' : '' %>">
+              <%= link_to 'Raport godzin pracownika', by_person_path %>
             </li>
           </ul>
         </div>
       </div>
+      
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
