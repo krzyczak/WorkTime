@@ -61,7 +61,6 @@ class OvertimeController < ApplicationController
     if @work_records.count > 0
       @employee_name = "#{@work_records.first.employee.last_name} #{@work_records.first.employee.first_name}"
     else
-      employee = Employee.find(params[:employee_id])
       @employee_name = "#{employee.last_name} #{employee.first_name}"
     end
     
