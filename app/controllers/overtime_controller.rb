@@ -24,8 +24,16 @@ class OvertimeController < ApplicationController
     @month = (params[:month] || Date.today.month).to_i
     @year  = (params[:year] || Date.today.year).to_i
     
-    start_date = Date.new(@year, @month, 1)
-    end_date = (Date.new(@year, @month+1, 1)-1)
+    if @month >= 12
+      start_date = Date.new(@year, 12, 1)
+      end_date = Date.new(@year, 12, 31)
+    elsif @month < 1
+      start_date = Date.new(@year, 1, 1)
+      end_date = Date.new(@year, 1, 31)
+    else
+      start_date = Date.new(@year, @month, 1)
+      end_date = (Date.new(@year, @month+1, 1)-1)
+    end
     
     @employees = Employee.all
     
