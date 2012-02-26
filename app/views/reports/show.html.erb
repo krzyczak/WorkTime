@@ -1,7 +1,7 @@
 <% title 'Roczna karta ewidencji czasu pracy' %>
 <div style="width: 30%;" class="dont_print">
   <table>
-  <%= form_tag report_path, :method => 'get' do -%>
+  <%= form_tag report_path(1), :method => 'get' do -%>
     <tr>
       <td>Pracownik</td><td><%= select_tag :employee_id, options_for_select(@employees.collect {|e| [ "#{e.last_name} #{e.first_name}", e.id ] }, params[:employee_id]), :onchange => "submit();" %></td>
     </tr>
@@ -55,7 +55,7 @@
       <td class="number"><%= "%.2f" % (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50]) %></td>
       <td class="number"><%= "%.2f" % (item[:overtime100]+item[:overtime50]) %></td>
       <td class="number"><%= "%.2f" % item[:vacation_leave] %></td>
-      <td class="number"><%= "%.2f" % ":unpaid_leave".to_i %></td>
+      <td class="number"><%= "%.2f" % item[:unpaid_leave] %></td>
       <td class="number"><%= "%.2f" % item[:sickness] %></td>
       <td class="number"><%= "%.2f" % item[:care_leave] %></td>
       <td class="number"><%= "%.2f" % item[:nn] %></td>
@@ -65,7 +65,7 @@
       @all_work_time += (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50])
       @overtime += (item[:overtime100]+item[:overtime50])
       @vacation_leave += item[:vacation_leave]
-      #@unpaid_leave += item[:unpaid_leave]
+      @unpaid_leave += item[:unpaid_leave]
       @sickness += item[:sickness]
       @care_leave += item[:care_leave]
       @nn += item[:nn]

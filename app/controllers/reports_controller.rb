@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
           overtime50: get_report_data(work_records, :overtime50)/60,
           overtime100: get_report_data(work_records, :overtime100)/60,
           vacation_leave: get_report_data(work_records, :vacation_leave)/480,
-          #urlop bezplatny/480
+          unpaid_leave: get_report_data(work_records, :unpaid_leave)/480,
           sickness: get_report_data(work_records, :sickness)/480,
           care_leave: get_report_data(work_records, :care_leave)/480,
           nn: get_report_data(work_records, :nn)/480,

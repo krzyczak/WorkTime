@@ -28,6 +28,9 @@
             <li class="<%= request.path == '/by_person' ? 'selected' : '' %>">
               <%= link_to 'Raport godzin pracownika', by_person_path %>
             </li>
+            <li class="<%= request.path.include?('/reports') ? 'selected' : '' %>">
+              <%= link_to 'Roczta ewidencja czasu pracy', report_path(1) %>
+            </li>
           </ul>
         </div>
       </div>

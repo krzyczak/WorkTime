@@ -80,28 +80,31 @@ end
 <table>
   <thead>
   <tr>
-    <th class="small_font">Lp.</th>
-    <th class="small_font">Pracownik</th>
-    <th class="small_font">Gr3</th>
-    <th class="small_font">Gr4</th>
-    <th class="small_font">Gr5</th>
-    <th class="small_font">Gr6</th>
-    <th class="small_font">Gr7</th>
-    <th class="small_font">Gr8</th>
-    <th class="small_font">Gr9</th>
-    <th class="small_font">Razem akord</th>
-    <th class="small_font">Wydajność</th>
-    <th class="small_font">Inna praca</th>
-    <th class="small_font">Sprzątanie</th>
-    <th class="small_font">Postój / bad. lek.</th>
-    <th class="small_font">Poprawki</th>
-    <th class="small_font">Przerwy</th>
-    <th class="small_font">Łączny czas<br/>przebywania<br/>w pracy</th>
+    <th class="small_font" rowspan="2">Lp.</th>
+    <th class="small_font" rowspan="2">Pracownik</th>
+    <th class="small_font" rowspan="2">Gr3</th>
+    <th class="small_font" rowspan="2">Gr4</th>
+    <th class="small_font" rowspan="2">Gr5</th>
+    <th class="small_font" rowspan="2">Gr6</th>
+    <th class="small_font" rowspan="2">Gr7</th>
+    <th class="small_font" rowspan="2">Gr8</th>
+    <th class="small_font" rowspan="2">Gr9</th>
+    <th class="small_font" rowspan="2">Razem akord</th>
+    <th class="small_font" rowspan="2">Wydajność</th>
+    <th class="small_font" rowspan="2">Inna praca</th>
+    <th class="small_font" rowspan="2">Sprzątanie</th>
+    <th class="small_font" rowspan="2">Postój / bad. lek.</th>
+    <th class="small_font" rowspan="2">Poprawki</th>
+    <th class="small_font" colspan="2">Łączny czas<br/>przebywania<br/>w pracy</th>
     <% if params[:report][:monthly] == "true" %>
-      <th class="small_font">Nadgodziny</th>
+      <th class="small_font" rowspan="2">Nadgodziny</th>
     <% else -%>
-      <th class="dont_print"></th>
+      <th class="dont_print" rowspan="2"></th>
     <% end -%>
+  </tr>
+  <tr>
+    <th class="small_font">Przerwy</th>
+    <th class="small_font">Praca</th>
   </tr>
   </thead>
   

@@ -81,17 +81,25 @@
       <td>Poprawki</td>
       <td><%= f.number_field :correction, :min => 0, :tabindex => "11", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
-      <td>Choroba</td>
-      <td><%= f.number_field :sickness, :min => 0, :tabindex => "19", :class => "narrow_field" %></td>
+      <td>Urlop bezpłatny</td>
+      <td><%= f.number_field :unpaid_leave, :min => 0, :tabindex => "21", :class => "narrow_field" %></td>
     </tr>
     <tr>
       <td>Łączny czas przebywania w pracy</td>
       <td><%= f.number_field :all_work_time, :min => 0, :value => 465.0, :tabindex => "12", :class => "narrow_field" %></td>
       <td class="no_border_td">&nbsp;</td>
+      <td>Choroba</td>
+      <td><%= f.number_field :sickness, :min => 0, :tabindex => "19", :class => "narrow_field" %></td>
+    </tr>
+    <tr>
+    <%#####################################################3%>
+    <tr>
+      <td class="no_border_td">&nbsp;</td>
+      <td class="no_border_td">&nbsp;</td>
+      <td class="no_border_td">&nbsp;</td>
       <td>NN</td>
       <td><%= f.number_field :nn, :min => 0, :tabindex => "20", :class => "narrow_field" %></td>
     </tr>
-    <tr>
     <%#####################################################3%>
     <tr>
       <td class="no_border_td">&nbsp;</td>
