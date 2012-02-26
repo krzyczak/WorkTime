@@ -54,21 +54,5 @@ class ReportsController < ApplicationController
     work_records.inject(BigDecimal.new("0.0")) { |sum, wr| sum += wr.send(data_type) }
   end
   
-  #dane dla pojedynczego i dla wszystkich
-  
-  #jednostka: godziny
-  #GN w godzinach
-  #R w godzinach
-  #urlop wypocznynkowy w dniach
-  #urlop w dniach
-  #chorobowe w dniach
-  #opieka w dniach
-  #NN w dniach
-  #okolicznościowy w dniach
-  
-  #łączny czas przebywania w pracy (przerwa liczona odrębnie)
-  
-  #na dole sumy
-  
 end
 
