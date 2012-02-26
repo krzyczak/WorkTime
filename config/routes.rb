@@ -7,6 +7,7 @@ WorkTime::Application.routes.draw do
   
   resources :work_records
   resources :employees
+  resources :reports
   
   resources :work_time_cards
   

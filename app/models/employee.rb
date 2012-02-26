@@ -17,4 +17,8 @@ class Employee < ActiveRecord::Base
   	end_date   = Date.parse("#{Date.today.year}-12-31")
   	due_care_leave - (work_records.where("date >= ?", start_date).where("date <= ?", end_date).inject(0) {|sum, wr| sum + (wr.care_leave/480)}).to_i
   end
+  
+  def full_name
+    "#{last_name} #{first_name}"
+  end
 end

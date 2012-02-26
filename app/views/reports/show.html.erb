@@ -1,0 +1,88 @@
+<% title 'Roczna karta ewidencji czasu pracy' %>
+<div style="width: 30%;" class="dont_print">
+  <table>
+  <%= form_tag report_path, :method => 'get' do -%>
+    <tr>
+      <td>Pracownik</td><td><%= select_tag :employee_id, options_for_select(@employees.collect {|e| [ "#{e.last_name} #{e.first_name}", e.id ] }, params[:employee_id]), :onchange => "submit();" %></td>
+    </tr>
+    <tr>
+      <td>Rok</td><td><%= select_tag :year, options_for_select(@years, (params[:year] || @current_year)), :onchange => "submit();" %></td>
+    </tr>
+    <noscript>
+    <tr>
+      <td>&nbsp;</td><td><%= submit_tag 'OK' %></td>
+    </tr>
+    </noscript>
+  <% end %>
+  </table>
+</div>
+
+
+<br/>
+<%= slick_button('Wersja do druku', :print => true, :year => (params[:year] || @current_year)) %>
+
+<% @report_data.each do |report_item| -%>
+  <table>
+    <tr>
+      <th colspan="9"><%= report_item[:employee].full_name %> - Roczna karta ewidencji czasu pracy - Rok <%= @current_year %></th>
+      <td rowspan="15" class="smaller_font">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        LEGENDA:<br/>
+        R - godziny przepracowane ogółem, w tym:<br/>
+        GN - godziny nadliczbowe<br/>
+        Uw - urlop wypoczynkowy<br/>
+        Ub - urlop bezpłatny<br/>
+        Ch - choroba<br/>
+        Op - opieka<br/>
+        Nn - nieobecność nieusprawiedliwiona<br/>
+        Uo - urlop okolicznościowy
+      </td>
+    </tr>
+    <tr>
+      <th>Miesiąc</th>
+      <th>R [godziny]</th>
+      <th>GN [godziny]</th>
+      <th>Uw [dni]</th>
+      <th>Ub [dni]</th>
+      <th>Ch [dni]</th>
+      <th>Op [dni]</th>
+      <th>Nn [dni]</th>
+      <th>Uo [dni]</th>
+    </tr>
+    <% report_item[:employee_data].each do |item| -%>
+    <tr>
+      <td><%= month_name(item[:month]) %></td>
+      <td class="number"><%= "%.2f" % (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50]) %></td>
+      <td class="number"><%= "%.2f" % (item[:overtime100]+item[:overtime50]) %></td>
+      <td class="number"><%= "%.2f" % item[:vacation_leave] %></td>
+      <td class="number"><%= "%.2f" % ":unpaid_leave".to_i %></td>
+      <td class="number"><%= "%.2f" % item[:sickness] %></td>
+      <td class="number"><%= "%.2f" % item[:care_leave] %></td>
+      <td class="number"><%= "%.2f" % item[:nn] %></td>
+      <td class="number"><%= "%.2f" % item[:occasional_leave] %></td>
+    </tr>
+    <%
+      @all_work_time += (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50])
+      @overtime += (item[:overtime100]+item[:overtime50])
+      @vacation_leave += item[:vacation_leave]
+      #@unpaid_leave += item[:unpaid_leave]
+      @sickness += item[:sickness]
+      @care_leave += item[:care_leave]
+      @nn += item[:nn]
+      @occasional_leave += item[:occasional_leave]
+    %>
+    <% end -%>
+    <tr>
+      <td style="text-align: center; font-weight: bold;" class="smaller_font">SUMA:</td>
+      <td class="number"><%= "%.2f" % @all_work_time %></td>
+      <td class="number"><%= "%.2f" % @overtime %></td>
+      <td class="number"><%= "%.2f" % @vacation_leave %></td>
+      <td class="number"><%= "%.2f" % @unpaid_leave %></td>
+      <td class="number"><%= "%.2f" % @sickness %></td>
+      <td class="number"><%= "%.2f" % @care_leave %></td>
+      <td class="number"><%= "%.2f" % @nn %></td>
+      <td class="number"><%= "%.2f" % @occasional_leave %></td>
+    </tr>
+  </table>
+<% end -%>
+
