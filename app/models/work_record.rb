@@ -3,7 +3,9 @@
 class WorkRecord < ActiveRecord::Base
   belongs_to :employee
   belongs_to :department
-  
+
+  scope :by_employee, lambda { |start_date, end_date, employee_id| select("employee_id").select("gr3").select("gr4").select("gr5").select("gr6").select("gr7").select("gr8").select("gr9").select("date").where("date >= ?", start_date).where("date <= ?", end_date).where("employee_id = ?", employee_id) }
+  scope :sum_by_employee, lambda { |start_date, end_date, employee_id| select("employee_id").select("SUM(gr3) as gr3").select("SUM(gr4) as gr4").select("SUM(gr5) as gr5").select("SUM(gr6) as gr6").select("SUM(gr7) as gr7").select("SUM(gr8) as gr8").select("SUM(gr9) as gr9").where("date >= ?", start_date).where("date <= ?", end_date).where("employee_id = ?", employee_id).group(:employee_id) }
   
   validates_numericality_of :gr3, :gr4, :gr5, :gr6, :gr7, :gr8, :gr9, :other_work, :cleaning, :layover, :correction, :all_work_time,
     :overtime50, :overtime100, :vacation_leave, :occasional_leave, :sickness, :nn,

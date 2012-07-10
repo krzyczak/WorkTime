@@ -9,6 +9,7 @@ module NavigationHelper
   end
   
   def store_target_location
-    session[:return_to] = request.request_uri
+    #session[:return_to] = request.request_uri
+    session[:return_to] = request.url
   end
 end
