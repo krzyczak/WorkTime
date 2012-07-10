@@ -4,6 +4,7 @@ class WorkRecord < ActiveRecord::Base
   belongs_to :employee
   belongs_to :department
 
+  scope :overtime_sum, lambda { |start_date, end_date| select("employee_id").select("SUM(overtime50) as overtime50").select("SUM(overtime100) as overtime100").select("last_name").joins('LEFT JOIN employees ON employees.id = work_records.employee_id').where("date >= ?", start_date).where("date <= ?", end_date).group(:employee_id).order('last_name ASC') }
   scope :by_employee, lambda { |start_date, end_date, employee_id| select("employee_id").select("gr3").select("gr4").select("gr5").select("gr6").select("gr7").select("gr8").select("gr9").select("date").where("date >= ?", start_date).where("date <= ?", end_date).where("employee_id = ?", employee_id) }
   scope :sum_by_employee, lambda { |start_date, end_date, employee_id| select("employee_id").select("SUM(gr3) as gr3").select("SUM(gr4) as gr4").select("SUM(gr5) as gr5").select("SUM(gr6) as gr6").select("SUM(gr7) as gr7").select("SUM(gr8) as gr8").select("SUM(gr9) as gr9").where("date >= ?", start_date).where("date <= ?", end_date).where("employee_id = ?", employee_id).group(:employee_id) }
   

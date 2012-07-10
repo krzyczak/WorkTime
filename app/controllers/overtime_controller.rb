@@ -10,11 +10,7 @@ class OvertimeController < ApplicationController
     @years = []
     (@current_year.to_i-10).upto(@current_year.to_i+10) {|y| @years.push(["#{y} r.", y])}
     
-    @work_records = WorkRecord.select("employee_id").select("SUM(overtime50) as overtime50")
-    .select("SUM(overtime100) as overtime100").select("last_name")
-    .joins('LEFT JOIN employees ON employees.id = work_records.employee_id')
-    .where("date >= ?", @start_date).where("date <= ?", @end_date)
-    .group(:employee_id).order('last_name ASC')
+    @work_records = WorkRecord.overtime_sum(@start_date, @end_date)
     
     provide_print_version_if_requested
   end
