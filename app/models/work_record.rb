@@ -22,7 +22,8 @@ class WorkRecord < ActiveRecord::Base
   end
   
   def productivity
-    all_work_time > 0 ? ( accord_all_groups/(all_work_time-other_work-cleaning-layover-correction) ) : 0.0
+    productivity_divider = ( accord_all_groups/(all_work_time-other_work-cleaning-layover-correction) )
+    (all_work_time > 0 && productivity_divider > 0) ? ( accord_all_groups/(all_work_time-other_work-cleaning-layover-correction) ) : 0.0
   end
   
   def calculate_breaks

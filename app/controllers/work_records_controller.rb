@@ -83,7 +83,10 @@ class WorkRecordsController < ApplicationController
     @accord_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.accord_all_groups }
     @all_work_time_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.all_work_time }
     #@productivity_sum = @all_work_time_sum > 0 ? @accord_sum/@all_work_time_sum : 0.0
-    @productivity_sum = @all_work_time_sum > 0 ? @accord_sum/(@all_work_time_sum-@other_work_sum-@cleaning_sum-@layover_sum-@correction_sum) : 0.0
+    #@productivity_sum = @all_work_time_sum > 0 ? @accord_sum/(@all_work_time_sum-@other_work_sum-@cleaning_sum-@layover_sum-@correction_sum) : 0.0
+
+    @productivity_divider = (@all_work_time_sum-@other_work_sum-@cleaning_sum-@layover_sum-@correction_sum)
+    @productivity_sum = (@all_work_time_sum > 0 && @productivity_divider > 0) ? @accord_sum/(@all_work_time_sum-@other_work_sum-@cleaning_sum-@layover_sum-@correction_sum) : 0.0
     
     store_target_location
     provide_print_version_if_requested
