@@ -25,7 +25,8 @@ class OvertimeController < ApplicationController
     @year  = (params[:year] || Date.today.year).to_i
     
     start_date = Date.new(@year, @month, 1)
-    end_date = (Date.new(@year, @month+1, 1)-1)
+    # end_date = (Date.new(@year, @month+1, 1)-1)
+    end_date = get_end_date_of_month(@year, @month)
     
     @employees = Employee.all
     
@@ -75,6 +76,15 @@ class OvertimeController < ApplicationController
     (@year.to_i-10).upto(@year.to_i+10) {|y| @years.push(["#{y} r.", y])}
     
     provide_print_version_if_requested
+  end
+
+  private
+  def get_end_date_of_month(year, month)
+      if month < 12
+        (Date.new(year, month+1, 1)-1)
+    else
+        Date.new(year, 12, 31)
+    end
   end
   
 end
