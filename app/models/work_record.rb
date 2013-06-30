@@ -13,9 +13,20 @@ class WorkRecord < ActiveRecord::Base
     :greater_than_or_equal_to => 0
     
   validate :unique_record, :on => :create
+
+  validate :overtime_entered_if_necessary
   
   def unique_record
-    errors.add_to_base("Dla tego pracownika w danym dniu, dane są już wprowadzone...\nProszę wybrać innego pracownika.") if WorkRecord.where("employee_id = ? AND date = ?", employee_id, date).count > 0
+    # errors.add_to_base("Dla tego pracownika w danym dniu, dane są już wprowadzone...\nProszę wybrać innego pracownika.") if WorkRecord.where("employee_id = ? AND date = ?", employee_id, date).count > 0
+    errors.add(:base, "Dla tego pracownika w danym dniu, dane są już wprowadzone...\nProszę wybrać innego pracownika.") if WorkRecord.where("employee_id = ? AND date = ?", employee_id, date).count > 0
+  end
+
+  def overtime_entered_if_necessary
+    if (all_work_time > 480 && !(overtime50+overtime100 > 0))
+      errors.add(:base, "Coś nie tak z nadgodzinami. Wpisz nadgodziny lub zmniejsz czas pracy do 480 minut.")
+    elsif (all_work_time <= 480 && (overtime50+overtime100 > 0))
+      errors.add(:base, "Coś nie tak z nadgodzinami. Zwiększ czas pracy ponad 480 minut lub zmiejsz nadgodziny do 0.")
+    end
   end
   
   #validates_uniqueness_of :employee_id, :scope => [:date]
@@ -29,6 +40,15 @@ class WorkRecord < ActiveRecord::Base
   end
   
   def calculate_breaks
-    all_work_time > 360 ? 15 : 0
+    all_work_time >= 360 ? BigDecimal.new("15") : BigDecimal.new("0")
+  end
+
+  def calculate_breaks_and_all_work_time!
+    breaks = calculate_breaks
+    all_work_time -= breaks
+  end
+
+  def all_work_time_with_breaks
+    all_work_time + breaks
   end
 end

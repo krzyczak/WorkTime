@@ -29,7 +29,7 @@
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         LEGENDA:<br/>
         R - godziny przepracowane ogółem, w tym:<br/>
-        GN - godziny nadliczbowe<br/>
+        GN - godziny nadliczbowe<br/><br/><br/>
         Uw - urlop wypoczynkowy<br/>
         Ub - urlop bezpłatny<br/>
         Ch - choroba<br/>
@@ -52,7 +52,8 @@
     <% report_item[:employee_data].each do |item| -%>
     <tr>
       <td><%= month_name(item[:month]) %></td>
-      <td class="number"><%= "%.2f" % (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50]) %></td>
+      <!-- <td class="number"><%#= "%.2f" % (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50]) %></td> -->
+      <td class="number"><%= "%.2f" % (item[:all_work_time] + item[:breaks]) %></td>
       <td class="number"><%= "%.2f" % (item[:overtime100]+item[:overtime50]) %></td>
       <td class="number"><%= "%.2f" % item[:vacation_leave] %></td>
       <td class="number"><%= "%.2f" % item[:unpaid_leave] %></td>
@@ -62,7 +63,8 @@
       <td class="number"><%= "%.2f" % item[:occasional_leave] %></td>
     </tr>
     <%
-      @all_work_time += (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50])
+      # @all_work_time += (item[:all_work_time] + item[:breaks] + item[:overtime100]+item[:overtime50])
+      @all_work_time += (item[:all_work_time] + item[:breaks])
       @overtime += (item[:overtime100]+item[:overtime50])
       @vacation_leave += item[:vacation_leave]
       @unpaid_leave += item[:unpaid_leave]

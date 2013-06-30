@@ -241,3 +241,68 @@ select {
     page-break-before: always;
   }
 }
+
+/****************************** Styles work record form *************************************/
+.table_container {
+  float: left;
+  padding: 20px;
+}
+
+table.work_record tr td {
+  height: 25px;
+}
+
+.field_with_error {
+  /*background-color: #FCC;*/
+  background-color: antiquewhite;
+  border: 1px solid #C66;
+}
+
+.flash_error {
+  clear: both;
+  padding: 5px 8px;
+  /*margin: 10px 0;*/
+  display: none;
+  width: 500px;
+
+  /*background-color: #FCC;*/
+  background-color: antiquewhite;
+  border: solid 1px #C66;
+
+  /*position: relative;
+  top: 20px;
+  left: -120px;*/
+}
+
+.btn {
+  display: inline;
+  text-decoration: none;
+  border: none;
+  padding: 7px;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.apply {
+  background: #94D43A;
+}
+
+.apply:hover {
+  background: limegreen;
+}
+
+.cancel {
+  background: #FCC;
+  border: solid 0px red;
+}
+
+.cancel:hover {
+  background: lightcoral;
+  border: solid 0px red;
+}
+
+.disabled, .disabled:hover {
+  cursor: not-allowed;
+  background: grey;
+  color: darkorange;
+}

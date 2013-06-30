@@ -6,138 +6,184 @@
   <% msg = "Wprowadzasz dane dla pracownika: #{@work_record.employee.last_name} #{@work_record.employee.first_name}, z wydziału: #{@work_record.employee.department.name}, na dzień: #{@work_record.date.strftime("%d-%m-%Y").to_s}." %>
   
   <%= content_tag :div, msg, :id => "flash_notice", :style => "width: 46%;" %>
-  
-  <div style="float:left;">
-  <table>
-    <tr>
-      <td>Grupa 3</td>
-      <td><%= f.number_field :gr3, :min => 0, :tabindex => "1", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td colspan="2"><b>Przerwy obliczane są automatycznie</b></td>
-    </tr>
-    <tr>
-      <td>Grupa 4</td>
-      <td><%= f.number_field :gr4, :min => 0, :tabindex => "2", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Przerwy</td>
-      <td><%= f.number_field :breaks, :readonly => :readonly, :value => "15.0", :tabindex => "13", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Grupa 5</td>
-      <td><%= f.number_field :gr5, :min => 0, :tabindex => "3", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td colspan="2"><b>Dane do ewidencji miesięcznej</b></td>
-    </tr>
-    <tr>
-      <td>Grupa 6</td>
-      <td><%= f.number_field :gr6, :min => 0, :tabindex => "4", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Czas przepracowany ogółem</td>
-      <td><%= number_field :work_time, :sum, :readonly => :readonly, :value => "480.0", :tabindex => "14", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Grupa 7</td>
-      <td><%= f.number_field :gr7, :min => 0, :tabindex => "5", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>W tym</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Grupa 8</td>
-      <td><%= f.number_field :gr8, :min => 0, :tabindex => "6", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Nadgodziny z dopłatą 50%</td>
-      <td><%= f.number_field :overtime50, :min => 0, :tabindex => "15", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Grupa 9</td>
-      <td><%= f.number_field :gr9, :min => 0, :tabindex => "7", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Nadgodziny z dopłatą 100%</td>
-      <td><%= f.number_field :overtime100, :min => 0, :tabindex => "16", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Inna praca</td>
-      <td><%= f.number_field :other_work, :min => 0, :tabindex => "8", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Urlop wypoczynkowy</td>
-      <td><%= f.number_field :vacation_leave, :min => 0, :tabindex => "17", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Sprzątanie</td>
-      <td><%= f.number_field :cleaning, :min => 0, :tabindex => "9", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Urlop okolicznościowy</td>
-      <td><%= f.number_field :occasional_leave, :min => 0, :tabindex => "18", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Postój badania lekarskie</td>
-      <td><%= f.number_field :layover, :min => 0, :tabindex => "10", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Urlop opieka</td>
-      <td><%= f.number_field :care_leave, :min => 0, :tabindex => "18", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Poprawki</td>
-      <td><%= f.number_field :correction, :min => 0, :tabindex => "11", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Urlop bezpłatny</td>
-      <td><%= f.number_field :unpaid_leave, :min => 0, :tabindex => "21", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td>Łączny czas przebywania w pracy</td>
-      <td><%= f.number_field :all_work_time, :min => 0, :value => 465.0, :tabindex => "12", :class => "narrow_field" %></td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>Choroba</td>
-      <td><%= f.number_field :sickness, :min => 0, :tabindex => "19", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-    <%#####################################################3%>
-    <tr>
-      <td class="no_border_td">&nbsp;</td>
-      <td class="no_border_td">&nbsp;</td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>NN</td>
-      <td><%= f.number_field :nn, :min => 0, :tabindex => "20", :class => "narrow_field" %></td>
-    </tr>
-    <%#####################################################3%>
-    <tr>
-      <td class="no_border_td">&nbsp;</td>
-      <td class="no_border_td">&nbsp;</td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>W niedziele i święta</td>
-      <td><%= f.number_field :sunday_time, :min => 0, :tabindex => "21", :class => "narrow_field" %></td>
-    </tr>
-    <tr>
-      <td class="no_border_td">&nbsp;</td>
-      <td class="no_border_td">&nbsp;</td>
-      <td class="no_border_td">&nbsp;</td>
-      <td>W porze nocnej</td>
-      <td><%= f.number_field :night_time, :min => 0, :tabindex => "22", :class => "narrow_field" %></td>
-    </tr>
-    <%#####################################################3%>
-      <td class="no_border_td"></td>
-      <td class="no_border_td"></td>
-      <td class="no_border_td"></td>
-      <td class="no_border_td" colspan="2" style="text-align: right;">
-        <%= f.submit "#{@submit_button_text}", :style => "width: 70%", :tabindex => "23" %> <%= link_to 'Anuluj',
-          work_records_path, :tabindex => "24" %>
-      </td>
-    </tr>
-  </table>
+
+  <div class="table_container">
+    <table class="work_record">
+      <tr>
+        <td colspan="2" class="no_border_td"><b>&nbsp;</b></td>
+      </tr>
+      <tr>
+        <td>Grupa 3</td>
+        <td><%= f.number_field :gr3, :min => 0, :tabindex => "1", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Grupa 4</td>
+        <td><%= f.number_field :gr4, :min => 0, :tabindex => "2", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Grupa 5</td>
+        <td><%= f.number_field :gr5, :min => 0, :tabindex => "3", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Grupa 6</td>
+        <td><%= f.number_field :gr6, :min => 0, :tabindex => "4", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Grupa 7</td>
+        <td><%= f.number_field :gr7, :min => 0, :tabindex => "5", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Grupa 8</td>
+        <td><%= f.number_field :gr8, :min => 0, :tabindex => "6", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Grupa 9</td>
+        <td><%= f.number_field :gr9, :min => 0, :tabindex => "7", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Inna praca</td>
+        <td><%= f.number_field :other_work, :min => 0, :tabindex => "8", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Sprzątanie</td>
+        <td><%= f.number_field :cleaning, :min => 0, :tabindex => "9", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Postój badania lekarskie</td>
+        <td><%= f.number_field :layover, :min => 0, :tabindex => "10", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Poprawki</td>
+        <td><%= f.number_field :correction, :min => 0, :tabindex => "11", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Łączny czas przebywania<br/>w pracy (w tym przerwy)</td>
+        <td><%= f.number_field :all_work_time, :min => 0, :value => (@work_record.new_record? ? 480.0 : @work_record.all_work_time_with_breaks), :tabindex => "12", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+    </table>
+  </div>
+
+  <div class="table_container">
+    <table class="work_record">
+      <tr>
+        <td colspan="2"><b>Dane do ewidencji miesięcznej</b></td>
+      </tr>
+      <tr>
+        <td>Czas przepracowany ogółem</td>
+        <td><%= number_field :work_time, :sum, :readonly => :readonly, :value => (@work_record.new_record? ? 480.0 : @work_record.all_work_time_with_breaks), :tabindex => "14", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>W tym</td>
+        <td></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Nadgodziny z dopłatą 50%</td>
+        <td><%= f.number_field :overtime50, :min => 0, :tabindex => "15", :class => "narrow_field" %>
+        </td>
+        <td rowspan="2" class="no_border_td">
+          <div id="overtime_should_be_entered_text" style="display: none;">Wprowadzono ponad 480 minut czasu pracy. Proszę podać nadgodziny z dopłatą 50% i/lub 100%</div>
+          <div id="overtime_should_not_be_entered_text" style="display: none;">Wprowadzono nadgodziny, ale czas pracy nie przekroczył 480 minut. Zwiększ czas pracy lub usuń nadgodziny.</div>
+          <div id="overtime_wrong_values_text" style="display: none;">Coś nie tak. Za mało lub za dużo nadgodzin.</div>
+          <%= content_tag :div, "empty...", :class => "flash_error", :id => "overtime_alert" %>
+        </td>
+      </tr>
+      <tr>
+        <td>Nadgodziny z dopłatą 100%</td>
+        <td><%= f.number_field :overtime100, :min => 0, :tabindex => "16", :class => "narrow_field" %></td>
+      </tr>
+      <tr>
+        <td>Urlop wypoczynkowy</td>
+        <td><%= f.number_field :vacation_leave, :min => 0, :tabindex => "17", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Urlop okolicznościowy</td>
+        <td><%= f.number_field :occasional_leave, :min => 0, :tabindex => "18", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Urlop opieka</td>
+        <td><%= f.number_field :care_leave, :min => 0, :tabindex => "19", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Urlop bezpłatny</td>
+        <td><%= f.number_field :unpaid_leave, :min => 0, :tabindex => "20", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Choroba</td>
+        <td><%= f.number_field :sickness, :min => 0, :tabindex => "21", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>NN</td>
+        <td><%= f.number_field :nn, :min => 0, :tabindex => "22", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>W niedziele i święta</td>
+        <td><%= f.number_field :sunday_time, :min => 0, :tabindex => "23", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>W porze nocnej</td>
+        <td><%= f.number_field :night_time, :min => 0, :tabindex => "24", :class => "narrow_field" %></td>
+        <td class="no_border_td">&nbsp;</td>
+      </tr>
+    </table>
   </div>
   <div class="clear">&nbsp;</div>
+  <div style="margin-left: 420px; white-space: nowrap;">
+    <%= f.submit "#{@submit_button_text}", :tabindex => "25", :id => 'submit_button', :class => "btn apply" %>
+    <%= link_to 'Anuluj', work_records_path, :tabindex => "26", :class => "btn cancel", :style => "max-heigth: 25px;" %>
+  </div>
   <script>
-    $('#work_record_all_work_time').change(function(){
-      //var all_work_time = parseFloat($('#work_record_all_work_time')).toFixed(2);
-      var all_work_time = parseFloat($('#work_record_all_work_time').val());
-      var breaks = 0;
-      if(all_work_time > 360) {
-        breaks = 15;
+    // $(document).ready(function(){
+      var show_alerts = function(msg_div) {
+        var al = $("#overtime_alert");
+        al.text($(msg_div).text());
+        $("#overtime_alert").slideDown(200);
+        $("#work_record_overtime50").addClass('field_with_error');
+        $("#work_record_overtime100").addClass('field_with_error');
+        $("#submit_button").attr('disabled', 'disabled');
+        $("#submit_button").addClass('disabled');
       }
-      $('#work_record_breaks').val(breaks);
-      $('#work_time_sum').val(breaks+all_work_time);
-      //alert($('#work_record_breaks').val());
-    });
+
+      var hide_alerts = function() {
+        $("#overtime_alert").slideUp(200);
+        $("#work_record_overtime50").removeClass('field_with_error');
+        $("#work_record_overtime100").removeClass('field_with_error');
+        $("#submit_button").removeAttr('disabled', 'disabled');
+        $("#submit_button").removeClass('disabled');
+      }
+
+      $('#work_record_all_work_time, #work_record_overtime50, #work_record_overtime100').change(function(){
+        //var all_work_time = parseFloat($('#work_record_all_work_time')).toFixed(2);
+        var all_work_time = parseFloat($('#work_record_all_work_time').val());
+        var work_record_overtime50 = parseFloat($("#work_record_overtime50").val());
+        var work_record_overtime100 = parseFloat($("#work_record_overtime100").val());
+        var normal_work_time = 480;
+
+        $('#work_time_sum').val(all_work_time);
+        var overtime_needed = (all_work_time > normal_work_time);
+        var overtime_not_entered = (!(work_record_overtime50 > 0 || work_record_overtime100 > 0));
+        var overtime_only = (work_record_overtime50+work_record_overtime100)
+        // if(all_work_time > normal_work_time && !(work_record_overtime50 > 0 || work_record_overtime100 > 0)) {
+        if(overtime_needed && overtime_not_entered) {
+          show_alerts("#overtime_should_be_entered_text")
+        } else if(!overtime_needed && !overtime_not_entered) {
+          show_alerts("#overtime_should_not_be_entered_text");
+        } else if(overtime_needed && (overtime_only+normal_work_time) != all_work_time) {
+          show_alerts("#overtime_wrong_values_text");
+        } else {
+          hide_alerts();
+        }
+        
+      });
+    // });
   </script>
 <% end %>

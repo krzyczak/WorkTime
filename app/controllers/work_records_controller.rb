@@ -116,6 +116,7 @@ class WorkRecordsController < ApplicationController
     @work_record = WorkRecord.new(params[:work_record])
     @work_record.department = Department.find(session[:department_id])
     @work_record.breaks = @work_record.calculate_breaks
+    @work_record.all_work_time -= @work_record.breaks
 
     if @work_record.save
       done_count = (WorkRecord.where(:department_id => session[:department_id]).where(:date => session[:report_date])).count
@@ -134,7 +135,12 @@ class WorkRecordsController < ApplicationController
 
   def update
     @work_record = WorkRecord.find(params[:id])
+    @work_record.all_work_time = BigDecimal.new(params[:work_record][:all_work_time])
     @work_record.breaks = @work_record.calculate_breaks
+    @work_record.all_work_time -= @work_record.breaks
+
+    params[:work_record].delete :all_work_time
+    params[:work_record].delete :breaks
 
     if @work_record.update_attributes(params[:work_record])
       redirect_to_target_or_default(@work_record, :notice => t(:successfully_updated_work_record))
