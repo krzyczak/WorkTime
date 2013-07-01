@@ -43,11 +43,6 @@ class WorkRecord < ActiveRecord::Base
     all_work_time >= 360 ? BigDecimal.new("15") : BigDecimal.new("0")
   end
 
-  def calculate_breaks_and_all_work_time!
-    breaks = calculate_breaks
-    all_work_time -= breaks
-  end
-
   def all_work_time_with_breaks
     all_work_time + breaks
   end

@@ -19,7 +19,7 @@
 
 
 <br/>
-<%= slick_button('Wersja do druku', :print => true, :year => (params[:year] || @current_year)) %>
+<%= slick_button('Wersja do druku', :print => true, :year => (params[:year] || @current_year), :employee_id => @employee.id) %>
 
 <% @report_data.each do |report_item| -%>
   <table>
