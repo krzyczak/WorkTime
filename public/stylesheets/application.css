@@ -263,7 +263,6 @@ table.work_record tr td {
   padding: 5px 8px;
   /*margin: 10px 0;*/
   display: none;
-  width: 500px;
 
   /*background-color: #FCC;*/
   background-color: antiquewhite;
@@ -272,6 +271,11 @@ table.work_record tr td {
   /*position: relative;
   top: 20px;
   left: -120px;*/
+}
+
+.narrow {
+  width: 200px;
+  max-width: 200px;
 }
 
 .btn {
