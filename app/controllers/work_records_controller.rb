@@ -84,6 +84,8 @@ class WorkRecordsController < ApplicationController
     @all_work_time_sum = @work_records.inject(0.0) {|sum, wr| sum += wr.all_work_time }
     #@productivity_sum = @all_work_time_sum > 0 ? @accord_sum/@all_work_time_sum : 0.0
     @productivity_sum = @all_work_time_sum > 0 ? @accord_sum/(@all_work_time_sum-@other_work_sum-@cleaning_sum-@layover_sum-@correction_sum) : 0.0
+
+    @overtime_sum = @grx.map(&:overtime).sum
     
     store_target_location
     provide_print_version_if_requested

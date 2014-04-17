@@ -132,7 +132,8 @@ end
     <td><%= work_record.breaks %></td>
     <td><%= work_record.all_work_time %></td>
     <% if params[:report][:monthly] == "true" %>
-      <td><%= work_record.all_work_time-((work_record.breaks/15)*465) %></td>
+      <!-- <td><%#= work_record.all_work_time-((work_record.breaks/15)*465) %></td> -->
+      <td><%= work_record.overtime %></td>
     <% else -%>
       <td class="dont_print">
         <%= link_to raw('<img src="/images/edit.png" title="Edytuj wpis">'), edit_work_record_path(work_record.work_record_id) %>
@@ -160,7 +161,7 @@ end
       <td><%= @correction_sum %></td>
       <td colspan="1"><%= @breaks_sum %></td>
       <td colspan="1"><%= @all_work_time_sum %></td>
-      <td></td>
+      <td><%= @overtime_sum %></td>
     </tr>
     <tr>
       <th class="small_font">Lp.</th>
@@ -181,7 +182,7 @@ end
       <th class="small_font">Przerwy</th>
       <th class="small_font">Łącznie</th>
       <% if params[:report][:monthly] == "true" %>
-        <th class="small_font"></th>
+        <th class="small_font">Nadgodziny</th>
       <% else -%>
         <th class="dont_print"></th>
       <% end -%>

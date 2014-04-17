@@ -46,4 +46,8 @@ class WorkRecord < ActiveRecord::Base
   def all_work_time_with_breaks
     all_work_time + breaks
   end
+
+  def overtime
+    all_work_time-((breaks/15)*465)
+  end
 end
